@@ -1,7 +1,11 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemberRepository;
+import hello.hellospring.repository.MemoryMemberRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -9,7 +13,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
 
-    MemberService memberService = new MemberService();
+    // MemberService 에서 사용하는 MemoryMemberRepository, 현재 여기서 사용하는 MemoryMemberRepository가
+    // 현재 다른 instance에서 생성된다. 물론 여기서는 MemberService에서 static으로 사용중이라 문제는 안되지만,
+    // 조심해야한다. ( 다른 Repository를 이용중 )
+    MemberService memberService;
+    MemoryMemberRepository memberRepository;
+
+    // MemberService입장에서 외부에서 MemberRepositry를 넣어주는 형태, 직접 new 하지 않고.
+    // Dependency Injection (DI)
+    @BeforeEach
+    public void beforeEach() {
+        memberRepository = new MemoryMemberRepository();
+        memberService = new MemberService(memberRepository);
+    }
+
+
+    @AfterEach
+    public void afterEach() {
+        memberRepository.clearStore();
+    }
 
     @Test
     // Test 코드 작성은 한글로 바꿔도 무관하다..
