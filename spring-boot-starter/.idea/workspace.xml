@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d62e0d15-c122-42c2-b9ee-a386bf534b29" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/chany/HolomanProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chany/HolomanConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chany/HolomanConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,12 +71,20 @@
       <option name="project" value="LOCAL" />
       <updated>1611995560012</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="AutoConfiguration Training - add properties">
+      <created>1611996551575</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1611996551575</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="AutoConfiguration Training" />
-    <option name="LAST_COMMIT_MESSAGE" value="AutoConfiguration Training" />
+    <MESSAGE value="AutoConfiguration Training - add properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="AutoConfiguration Training - add properties" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1222" y="332" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611994043308">
@@ -90,25 +95,25 @@
       <screen x="-1920" y="12" width="1920" height="1040" />
     </state>
     <state x="-1155" y="216" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611996410397" />
-    <state x="-1346" y="118" width="1116" height="828" key="CommitChangelistDialog2" timestamp="1611995558999">
+    <state x="-1346" y="118" width="1116" height="828" key="CommitChangelistDialog2" timestamp="1611996550676">
       <screen x="-1920" y="12" width="1920" height="1040" />
     </state>
-    <state x="-1346" y="118" width="1116" height="828" key="CommitChangelistDialog2/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611995558999" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1611994559213">
+    <state x="-1346" y="118" width="1116" height="828" key="CommitChangelistDialog2/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611996550676" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1611998085482">
       <screen x="-1920" y="12" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611994559213" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1611994559212">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611998085482" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1611998085482">
       <screen x="-1920" y="12" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611994559212" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1611994559212">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611998085482" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1611998085482">
       <screen x="-1920" y="12" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611994559212" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1611994559213">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611998085482" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1611998085482">
       <screen x="-1920" y="12" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611994559213" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1536.824/-1920.12.1920.1040@-1920.12.1920.1040" timestamp="1611998085482" />
   </component>
 </project>
