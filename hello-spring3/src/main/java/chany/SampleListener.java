@@ -6,11 +6,12 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SampleListener implements ApplicationListener<ApplicationStartingEvent> {
+public class SampleListener implements ApplicationListener<ApplicationStartedEvent> {
+
     @Override
-    public void onApplicationEvent(ApplicationStartingEvent applicationStartingEvent) {
-        System.out.println("==================");
-        System.out.println("Application is Starting");
-        System.out.println("==================");
+    public void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent) {
+        System.out.println("==============================");
+        System.out.println("Started");
+        System.out.println("==============================");
     }
 }
