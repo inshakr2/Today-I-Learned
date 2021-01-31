@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e74a887-f81e-46c7-8d79-662cafacf849" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-mvc-demo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/chany/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/chany/user/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/chany/user/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/chany/ApplicationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/chany/user/UserControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chany/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/m/hello.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/hello.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/chany/ApplicationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/chany/user/UserControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/chany/user/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/chany/user/UserControllerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +24,7 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -51,6 +47,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
@@ -61,6 +58,9 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="chany" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Git\Spring-Study\Spring\spring-mvc-demo\src\main\resources\static" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -68,7 +68,7 @@
       <recent name="chany.user" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserControllerTest">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chany.Application" />
       <module name="spring-mvc-demo" />
@@ -113,11 +113,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserControllerTest.createUser_XML" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-mvc-demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chany.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="chany.user" />
+      <option name="MAIN_CLASS_NAME" value="chany.user.UserControllerTest" />
+      <option name="METHOD_NAME" value="createUser_XML" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.UserControllerTest.createUser_XML" />
         <item itemvalue="JUnit.UserControllerTest" />
         <item itemvalue="JUnit.UserControllerTest.createUser_JSON" />
-        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
@@ -130,44 +147,72 @@
       <option name="presentableId" value="Default" />
       <updated>1612102389998</updated>
     </task>
+    <task id="LOCAL-00001" summary="Lecture - HttpMessageConverters, Testing RestController">
+      <created>1612106222641</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612106222641</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Lecture - HttpMessageConverters, Testing RestController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lecture - HttpMessageConverters, Testing RestController" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="93" y="93" width="1350" height="638" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1612106535653">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612106535653" />
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1612108670540">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612108670540" />
     <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1612103316509">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612103316509" />
-    <state x="383" y="0" key="CommitChangelistDialog2" timestamp="1612105230402">
+    <state x="383" y="0" key="CommitChangelistDialog2" timestamp="1612106221694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="383" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612105230402" />
+    <state x="383" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612106221694" />
     <state x="147" y="65" key="DiffContextDialog" timestamp="1612105224355">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" key="DiffContextDialog/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612105224355" />
-    <state width="1493" height="130" key="GridCell.Tab.0.bottom" timestamp="1612105871352">
+    <state width="1493" height="232" key="GridCell.Tab.0.bottom" timestamp="1612109152156">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="130" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612105871352" />
-    <state width="1493" height="130" key="GridCell.Tab.0.center" timestamp="1612105871352">
+    <state width="1493" height="232" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612109152156" />
+    <state width="1493" height="232" key="GridCell.Tab.0.center" timestamp="1612109152156">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="130" key="GridCell.Tab.0.center/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612105871352" />
-    <state width="1493" height="130" key="GridCell.Tab.0.left" timestamp="1612105871352">
+    <state width="1493" height="232" key="GridCell.Tab.0.center/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612109152156" />
+    <state width="1493" height="232" key="GridCell.Tab.0.left" timestamp="1612109152155">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="130" key="GridCell.Tab.0.left/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612105871352" />
-    <state width="1493" height="130" key="GridCell.Tab.0.right" timestamp="1612105871352">
+    <state width="1493" height="232" key="GridCell.Tab.0.left/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612109152155" />
+    <state width="1493" height="232" key="GridCell.Tab.0.right" timestamp="1612109152156">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="130" key="GridCell.Tab.0.right/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612105871352" />
+    <state width="1493" height="232" key="GridCell.Tab.0.right/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612109152156" />
     <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1612103254954">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612103254954" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1612106228047">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612106228047" />
     <state x="540" y="232" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1612103208378">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="540" y="232" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612103208378" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1612107140917">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/-1920.12.1920.1040@0.0.1536.824" timestamp="1612107140917" />
   </component>
 </project>
