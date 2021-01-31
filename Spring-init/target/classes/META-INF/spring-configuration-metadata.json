@@ -1,0 +1,34 @@
+{
+  "groups": [
+    {
+      "name": "chany",
+      "type": "chany.ChanyProperties",
+      "sourceType": "chany.ChanyProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "chany.age",
+      "type": "java.lang.Integer",
+      "sourceType": "chany.ChanyProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "chany.full-name",
+      "type": "java.lang.String",
+      "sourceType": "chany.ChanyProperties"
+    },
+    {
+      "name": "chany.name",
+      "type": "java.lang.String",
+      "sourceType": "chany.ChanyProperties"
+    },
+    {
+      "name": "chany.time",
+      "type": "java.time.Duration",
+      "sourceType": "chany.ChanyProperties",
+      "defaultValue": "30s"
+    }
+  ],
+  "hints": []
+}

@@ -19,6 +19,7 @@ public class SampleRunner implements ApplicationRunner {
         System.out.println("Full Name = " + chanyProperties.getFullName());
         System.out.println("Name = " + chanyProperties.getName());
         System.out.println("age = " + chanyProperties.getAge());
+        System.out.println("time = " + chanyProperties.getTime());
         System.out.println("===================");
     }
 }
