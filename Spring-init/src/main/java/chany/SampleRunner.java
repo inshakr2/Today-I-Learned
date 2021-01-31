@@ -10,16 +10,18 @@ import org.springframework.stereotype.Component;
 public class SampleRunner implements ApplicationRunner {
 
     @Autowired
-    ChanyProperties chanyProperties;
+    private String hello;
+
+    @Autowired
+    private ChanyProperties chanyProperties;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
         System.out.println("===================");
-        System.out.println("Full Name = " + chanyProperties.getFullName());
-        System.out.println("Name = " + chanyProperties.getName());
-        System.out.println("age = " + chanyProperties.getAge());
-        System.out.println("time = " + chanyProperties.getTime());
+        System.out.println(hello);
+        System.out.println(chanyProperties.getFullName());
+        System.out.println(chanyProperties.getAge());
         System.out.println("===================");
     }
 }
