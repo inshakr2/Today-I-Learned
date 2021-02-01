@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e74a887-f81e-46c7-8d79-662cafacf849" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/hello.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/hello.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/hello.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/hello.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,14 +162,22 @@
       <option name="project" value="LOCAL" />
       <updated>1612109512930</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Lecture - Web jar, JQuery">
+      <created>1612191955977</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1612191955977</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lecture - HttpMessageConverters, Testing RestController" />
     <MESSAGE value="Lecture - Static Resource with addResourceHandler" />
     <MESSAGE value="Lecture - ContentsNegotiatingViewResolver" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lecture - ContentsNegotiatingViewResolver" />
+    <MESSAGE value="Lecture - Web jar, JQuery" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lecture - Web jar, JQuery" />
   </component>
   <component name="WindowStateProjectService">
     <state x="93" y="93" width="1350" height="638" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1612106535653">
