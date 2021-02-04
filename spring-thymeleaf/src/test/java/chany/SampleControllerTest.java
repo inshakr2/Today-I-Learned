@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
-class SampleControllerTest {
+public class SampleControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -24,7 +24,7 @@ class SampleControllerTest {
         mockMvc.perform(get("/hello"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"))
-                .andExpect(model().attribute("name", is("chany")));
+                .andExpect(model().attribute("name", "chany"));
     }
 
 }
