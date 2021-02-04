@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e74a887-f81e-46c7-8d79-662cafacf849" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../spring-thymeleaf/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-thymeleaf/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-thymeleaf/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-thymeleaf/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-thymeleaf/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-thymeleaf/src/main/java/chany/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-thymeleaf/src/main/java/chany/SampleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-thymeleaf/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-thymeleaf/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-thymeleaf/src/test/java/chany/SampleControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-thymeleaf/src/test/java/chany/SampleControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
