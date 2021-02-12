@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Application {
 
-    @CrossOrigin(origins = "http://localhost:18080")
+//    @CrossOrigin(origins = "http://localhost:18080")
     @GetMapping("/hello")
     public String hello() {
         return "Hello";
