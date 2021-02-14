@@ -1,4 +1,5 @@
 docker run -p 3306:3306 --name mysql_boot -e MYSQL_ROOT_PASSWORD=1 -e MYSQL_DATABASE=springboot -e MYSQL_USER=chany -e MYSQL_PASSWORD=pass -d mysql
-docker exec -i -t mysql_boot bash
-
 docker run -p 3306:3306 --name mysql_boot -e MYSQL_ROOT_PASSWORD=1 -e MYSQL_DATABASE=springboot -e MYSQL_USER=chany -e MYSQL_PASSWORD=pass -d mariadb
+
+docker exec -i -t mysql_boot bash
+mysql -u root -p
