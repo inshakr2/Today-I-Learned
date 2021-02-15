@@ -1,0 +1,5 @@
+docker run -p 27017:27017 --name mongo_boot -d mongo
+docker exec -i -t mongo_boot bash
+mongo
+
+
