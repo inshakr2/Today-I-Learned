@@ -1,0 +1,2 @@
+docker run -p 7474:7474 -p 7687:7687 -d --name noe4j_boot neo4j
+http://localhost:7474/browser
