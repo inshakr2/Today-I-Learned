@@ -1,22 +1,16 @@
 package chany.events;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 
-@Builder @NoArgsConstructor @AllArgsConstructor
-@Getter @Setter @EqualsAndHashCode(of = "id")
-@Entity
-public class Event {
-
-    @Id @GeneratedValue
-    private Integer id;
-    private boolean offline;
-    private boolean free;
-
-    @Enumerated(EnumType.STRING)
-    private EventStatus eventStatus = EventStatus.DRAFT;
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
+public class EventDto {
 
     private String name;
     private String description;
