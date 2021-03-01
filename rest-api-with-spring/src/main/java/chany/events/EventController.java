@@ -2,6 +2,7 @@ package chany.events;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.MediaTypes;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,7 @@ public class EventController {
 
         Event newEvent = this.eventRepository.save(event);
         URI createdUri = linkTo(EventController.class).slash(newEvent.getId()).toUri();
+        HttpHeaders headers = new HttpHeaders();
         return ResponseEntity.created(createdUri).body(event);
     }
 }
