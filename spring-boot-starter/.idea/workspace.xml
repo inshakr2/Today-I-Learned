@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d62e0d15-c122-42c2-b9ee-a386bf534b29" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../rest-api-with-spring/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../rest-api-with-spring/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest-api-with-spring/target/classes/chany/events/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../rest-api-with-spring/target/classes/chany/events/EventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest-api-with-spring/target/test-classes/chany/events/EventControllerTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../rest-api-with-spring/target/test-classes/chany/events/EventControllerTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d62e0d15-c122-42c2-b9ee-a386bf534b29" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
