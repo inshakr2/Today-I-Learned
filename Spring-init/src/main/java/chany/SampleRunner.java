@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleRunner implements ApplicationRunner {
 
+    @Value("${chany.name}")
+    String name;
+
     Logger logger = LoggerFactory.getLogger(SampleRunner.class);
 
     @Autowired
@@ -31,3 +34,4 @@ public class SampleRunner implements ApplicationRunner {
 
     }
 }
+
