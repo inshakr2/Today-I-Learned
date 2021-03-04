@@ -25,7 +25,7 @@ public class ErrorsSerializer extends JsonSerializer<Errors> {
                 if (rejectedValue != null) {
                     jsonGenerator.writeStringField("rejectedValue", rejectedValue.toString());
                 }
-
+                jsonGenerator.writeEndObject();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -37,7 +37,7 @@ public class ErrorsSerializer extends JsonSerializer<Errors> {
                 jsonGenerator.writeStringField("objectName",e.getObjectName());
                 jsonGenerator.writeStringField("code", e.getCode());
                 jsonGenerator.writeStringField("defaultMessage", e.getDefaultMessage());
-
+                jsonGenerator.writeEndObject();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
