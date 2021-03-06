@@ -44,7 +44,7 @@ public class EventControllerTests {
                 .basePrice(100)
                 .maxPrice(200)
                 .limitOfEnrollment(100)
-                .location("강남 D2 스타트업 팩토리")
+                .location("Start-up Factory")
                 .build();
 
         mockMvc.perform(post("/api/events/")
@@ -59,8 +59,10 @@ public class EventControllerTests {
                 .andExpect(jsonPath("free").value(false))
                 .andExpect(jsonPath("offline").value(true))
                 .andExpect(jsonPath("eventStatus").value(EventStatus.DRAFT.name()))
+                .andExpect(jsonPath("_links.self").exists())
+                .andExpect(jsonPath("_links.query-events").exists())
+                .andExpect(jsonPath("_links.update-event").exists())
         ;
-//                .andExpect(status().is(201))
     }
 
 
