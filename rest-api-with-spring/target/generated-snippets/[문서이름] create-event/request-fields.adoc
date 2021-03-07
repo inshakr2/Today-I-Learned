@@ -1,0 +1,44 @@
+|===
+|Path|Type|Description
+
+|`+name+`
+|`+String+`
+|Name of new event
+
+|`+description+`
+|`+String+`
+|description of new event
+
+|`+beginEnrollmentDateTime+`
+|`+String+`
+|date time of begin enrollment
+
+|`+closeEnrollmentDateTime+`
+|`+String+`
+|date time of close enrollment
+
+|`+beginEventDateTime+`
+|`+String+`
+|date time of begin event
+
+|`+endEventDateTime+`
+|`+String+`
+|date time of end event
+
+|`+location+`
+|`+String+`
+|location of new event
+
+|`+basePrice+`
+|`+Number+`
+|base price of new event
+
+|`+maxPrice+`
+|`+Number+`
+|max price of new event
+
+|`+limitOfEnrollment+`
+|`+Number+`
+|limit of enrollment
+
+|===
