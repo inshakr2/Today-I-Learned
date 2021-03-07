@@ -1,0 +1,76 @@
+|===
+|Path|Type|Description
+
+|`+id+`
+|`+Number+`
+|identifier of new event
+
+|`+name+`
+|`+String+`
+|Name of new event
+
+|`+description+`
+|`+String+`
+|description of new event
+
+|`+beginEnrollmentDateTime+`
+|`+String+`
+|date time of begin enrollment
+
+|`+closeEnrollmentDateTime+`
+|`+String+`
+|date time of close enrollment
+
+|`+beginEventDateTime+`
+|`+String+`
+|date time of begin event
+
+|`+endEventDateTime+`
+|`+String+`
+|date time of end event
+
+|`+location+`
+|`+String+`
+|location of new event
+
+|`+basePrice+`
+|`+Number+`
+|base price of new event
+
+|`+maxPrice+`
+|`+Number+`
+|max price of new event
+
+|`+limitOfEnrollment+`
+|`+Number+`
+|limit of enrollment
+
+|`+free+`
+|`+Boolean+`
+|it tells if this event is free or not
+
+|`+offline+`
+|`+Boolean+`
+|it tells if this event is offline or not
+
+|`+eventStatus+`
+|`+String+`
+|event status
+
+|`+_links.self.href+`
+|`+String+`
+|link to self
+
+|`+_links.query-events.href+`
+|`+String+`
+|link to query event list
+
+|`+_links.update-event.href+`
+|`+String+`
+|link to update existing event
+
+|`+_links.profile.href+`
+|`+String+`
+|link to profile
+
+|===

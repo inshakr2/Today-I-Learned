@@ -1,0 +1,33 @@
+[source,options="nowrap"]
+----
+{
+  "id" : 1,
+  "offline" : true,
+  "free" : false,
+  "eventStatus" : "DRAFT",
+  "name" : "Spring",
+  "description" : "REST API Development with Spring",
+  "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+  "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+  "beginEventDateTime" : "2021-02-28T18:33:00",
+  "endEventDateTime" : "2021-03-01T18:30:00",
+  "location" : "Start-up Factory",
+  "basePrice" : 100,
+  "maxPrice" : 200,
+  "limitOfEnrollment" : 100,
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/api/events/1"
+    },
+    "query-events" : {
+      "href" : "http://localhost:8080/api/events"
+    },
+    "update-event" : {
+      "href" : "http://localhost:8080/api/events/1"
+    },
+    "profile" : {
+      "href" : "/docs/index.html#resources-events-create"
+    }
+  }
+}
+----
