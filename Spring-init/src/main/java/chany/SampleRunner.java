@@ -26,6 +26,7 @@ public class SampleRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         logger.debug("===================================");
+        System.out.println(hello);
         logger.debug(hello);
         logger.debug(chanyProperties.getFullName());
         logger.debug(chanyProperties.getName());
