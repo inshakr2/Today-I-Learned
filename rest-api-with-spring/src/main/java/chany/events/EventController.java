@@ -14,18 +14,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @Controller
-@RequestMapping(value = "/api/events" , produces = MediaTypes.HAL_JSON_VALUE)
+@RequestMapping(value = "/api/events", produces = MediaTypes.HAL_JSON_VALUE)
 public class EventController {
 
     private final EventRepository eventRepository;
@@ -71,5 +69,20 @@ public class EventController {
         PagedModel<EntityModel<Event>> pagedModel = assembler.toModel(page, e -> new EventResource(e));
         pagedModel.add(new Link("/docs/index.html#resources-events-list").withRel("profile"));
         return ResponseEntity.ok(pagedModel);
+    }
+
+    @GetMapping("/{id}")
+    private ResponseEntity getEvent(@PathVariable Integer id) {
+        Optional<Event> optionalEvent = this.eventRepository.findById(id);
+
+        if (optionalEvent.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+
+            Event event = optionalEvent.get();
+            EventResource eventResource = new EventResource(event);
+            eventResource.add(new Link("docs/index.html#resources-events-get").withRel("profile"));
+            return ResponseEntity.ok(eventResource);
+        }
     }
 }

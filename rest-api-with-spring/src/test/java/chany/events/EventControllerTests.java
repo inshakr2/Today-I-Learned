@@ -29,7 +29,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.web.servlet.function.RequestPredicates.param;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -232,7 +231,15 @@ public class EventControllerTests {
                 .andExpect(jsonPath("id").exists())
                 .andExpect(jsonPath("_links.self").exists())
                 .andExpect(jsonPath("_links.profile").exists())
+                .andDo(document("get-an-event"))
                 ;
+    }
+
+    @Test
+    @TestDescription("없는 이벤트는 조회했을 때 404 응답")
+    public void getEvent404() throws Exception {
+        this.mockMvc.perform(get("/api/events/930208"))
+                .andExpect(status().isNotFound());
     }
 
     private Event generateEvent(int index) {
