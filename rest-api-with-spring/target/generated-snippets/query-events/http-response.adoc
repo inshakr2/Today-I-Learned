@@ -2,25 +2,25 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/hal+json
-Content-Length: 6234
+Content-Length: 7354
 
 {
   "_embedded" : {
     "eventList" : [ {
       "id" : 27,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event26",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/27"
@@ -28,19 +28,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 26,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event25",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/26"
@@ -48,19 +48,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 25,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event24",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/25"
@@ -68,19 +68,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 24,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event23",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/24"
@@ -88,19 +88,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 23,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event22",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/23"
@@ -108,19 +108,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 22,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event21",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/22"
@@ -128,19 +128,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 21,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event20",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/21"
@@ -148,19 +148,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 3,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event2",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/3"
@@ -168,19 +168,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 20,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event19",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/20"
@@ -188,19 +188,19 @@ Content-Length: 6234
       }
     }, {
       "id" : 19,
-      "offline" : false,
+      "offline" : true,
       "free" : false,
-      "eventStatus" : null,
+      "eventStatus" : "DRAFT",
       "name" : "event18",
-      "description" : "test event",
-      "beginEnrollmentDateTime" : null,
-      "closeEnrollmentDateTime" : null,
-      "beginEventDateTime" : null,
-      "endEventDateTime" : null,
-      "location" : null,
-      "basePrice" : 0,
-      "maxPrice" : 0,
-      "limitOfEnrollment" : 0,
+      "description" : "REST API Development with Spring",
+      "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
+      "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
+      "beginEventDateTime" : "2021-02-28T18:33:00",
+      "endEventDateTime" : "2021-03-01T18:30:00",
+      "location" : "Start-up Factory",
+      "basePrice" : 100,
+      "maxPrice" : 200,
+      "limitOfEnrollment" : 100,
       "_links" : {
         "self" : {
           "href" : "http://localhost:8080/api/events/19"

@@ -1,11 +1,15 @@
-[source,options="nowrap"]
+[source,http,options="nowrap"]
 ----
+HTTP/1.1 200 OK
+Content-Type: application/hal+json
+Content-Length: 658
+
 {
-  "id" : 32,
+  "id" : 36,
   "offline" : true,
   "free" : false,
   "eventStatus" : "DRAFT",
-  "name" : "Spring",
+  "name" : "event100",
   "description" : "REST API Development with Spring",
   "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
   "closeEnrollmentDateTime" : "2021-02-28T23:59:00",
@@ -17,16 +21,10 @@
   "limitOfEnrollment" : 100,
   "_links" : {
     "self" : {
-      "href" : "http://localhost:8080/api/events/32"
-    },
-    "query-events" : {
-      "href" : "http://localhost:8080/api/events"
-    },
-    "update-event" : {
-      "href" : "http://localhost:8080/api/events/32"
+      "href" : "http://localhost:8080/api/events/36"
     },
     "profile" : {
-      "href" : "/docs/index.html#resources-events-create"
+      "href" : "docs/index.html#resources-events-get"
     }
   }
 }
