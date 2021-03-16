@@ -1,7 +1,7 @@
 [source,options="nowrap"]
 ----
 {
-  "id" : 32,
+  "id" : 34,
   "offline" : true,
   "free" : false,
   "eventStatus" : "DRAFT",
@@ -17,13 +17,13 @@
   "limitOfEnrollment" : 100,
   "_links" : {
     "self" : {
-      "href" : "http://localhost:8080/api/events/32"
+      "href" : "http://localhost:8080/api/events/34"
     },
     "query-events" : {
       "href" : "http://localhost:8080/api/events"
     },
     "update-event" : {
-      "href" : "http://localhost:8080/api/events/32"
+      "href" : "http://localhost:8080/api/events/34"
     },
     "profile" : {
       "href" : "/docs/index.html#resources-events-create"
