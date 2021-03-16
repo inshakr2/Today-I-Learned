@@ -287,9 +287,10 @@ public class EventControllerTests {
     public void updateEvent400_Wrong() throws Exception {
         // Given
         Event event = this.generateEvent(201);
+
         EventDto eventDto = this.modelMapper.map(event, EventDto.class);
-        eventDto.setBasePrice(20000);
-        eventDto.setMaxPrice(1000);
+        eventDto.setBasePrice(200000);
+        eventDto.setMaxPrice(100);
 
         // When & Then
         this.mockMvc.perform(put("/api/events/{id}", event.getId())

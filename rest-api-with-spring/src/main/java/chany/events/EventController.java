@@ -100,6 +100,12 @@ public class EventController {
             return ResponseEntity.badRequest().body(new ErrorsResource(errors));
         }
 
+        this.eventValidator.validate(eventDto, errors);
+
+        if (errors.hasErrors()) {
+            return ResponseEntity.badRequest().body(new ErrorsResource(errors));
+        }
+
         Event existingEvent = optionalEvent.get();
         this.modelMapper.map(eventDto, existingEvent);
         Event savedEvent = this.eventRepository.save(existingEvent);
