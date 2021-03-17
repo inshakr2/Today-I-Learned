@@ -1,5 +1,6 @@
 package chany.events;
 
+import chany.accounts.Account;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,6 +18,9 @@ public class Event {
 
     @Enumerated(EnumType.STRING)
     private EventStatus eventStatus = EventStatus.DRAFT;
+
+    @ManyToOne
+    private Account manager;
 
     private String name;
     private String description;
