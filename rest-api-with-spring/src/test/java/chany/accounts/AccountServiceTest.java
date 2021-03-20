@@ -12,12 +12,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class AccountServiceTest {
+public class AccountServiceTest {
 
     @Autowired
     AccountService accountService;
@@ -29,20 +28,21 @@ class AccountServiceTest {
     public void findByUsername() {
 
         // Given
+        String name = "chany@kakao.com";
+        String password = "123";
+
         Account account = Account.builder()
-                .email("chany@kakao.com")
-                .password("123")
+                .email(name)
+                .password(password)
                 .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
                 .build();
+        this.accountRepository.save(account);
 
         // When
-        UserDetailsService userDetailsService = (UserDetailsService) accountService;
-        UserDetails userDetails = userDetailsService.loadUserByUsername("chany");
+        UserDetailsService userDetailsService = accountService;
+        UserDetails userDetails = userDetailsService.loadUserByUsername(name);
 
         // Then
-        assertThat(userDetails.getPassword()).isEqualTo("123");
-
-
-
+        assertThat(userDetails.getPassword()).isEqualTo(password);
     }
 }
