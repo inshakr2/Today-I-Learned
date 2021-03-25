@@ -45,7 +45,7 @@ public class AuthServerConfigTest extends BaseControllerTest {
                     .param("grant_type","password"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("acess_token").exists());
+                .andExpect(jsonPath("access_token").exists());
     }
 
 

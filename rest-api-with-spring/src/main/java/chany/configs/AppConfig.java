@@ -27,25 +27,25 @@ public class AppConfig {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Bean
-    public ApplicationRunner applicationRunner() {
-        return new ApplicationRunner() {
-
-            @Autowired
-            AccountService accountService;
-
-            @Override
-            public void run(ApplicationArguments args) throws Exception {
-
-                // test용 계정 임시 생성
-                Account chany = Account.builder()
-                        .email("chany@kakao.com")
-                        .password("chany")
-                        .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-                        .build();
-                accountService.saveAccount(chany);
-
-            }
-        };
-    }
+//    @Bean
+//    public ApplicationRunner applicationRunner() {
+//        return new ApplicationRunner() {
+//
+//            @Autowired
+//            AccountService accountService;
+//
+//            @Override
+//            public void run(ApplicationArguments args) throws Exception {
+//
+//                // test용 계정 임시 생성
+//                Account chany = Account.builder()
+//                        .email("chany@kakao.com")
+//                        .password("chany")
+//                        .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
+//                        .build();
+//                accountService.saveAccount(chany);
+//
+//            }
+//        };
+//    }
 }
