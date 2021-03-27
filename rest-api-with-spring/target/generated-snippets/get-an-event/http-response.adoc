@@ -2,13 +2,20 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/hal+json
-Content-Length: 658
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 679
 
 {
-  "id" : 36,
+  "id" : 38,
   "offline" : true,
   "free" : false,
   "eventStatus" : "DRAFT",
+  "manager" : null,
   "name" : "event100",
   "description" : "REST API Development with Spring",
   "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
@@ -21,7 +28,7 @@ Content-Length: 658
   "limitOfEnrollment" : 100,
   "_links" : {
     "self" : {
-      "href" : "http://localhost:8080/api/events/36"
+      "href" : "http://localhost:8080/api/events/38"
     },
     "profile" : {
       "href" : "docs/index.html#resources-events-get"

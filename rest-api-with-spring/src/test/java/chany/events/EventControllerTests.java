@@ -1,9 +1,8 @@
 package chany.events;
 
-import chany.accounts.Account;
 import chany.accounts.AccountRepository;
-import chany.accounts.AccountRole;
 import chany.accounts.AccountService;
+import chany.common.AppProperties;
 import chany.common.BaseControllerTest;
 import chany.common.TestDescription;
 import org.junit.Before;
@@ -16,7 +15,6 @@ import org.springframework.security.oauth2.common.util.Jackson2JsonParser;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
@@ -39,11 +37,14 @@ public class EventControllerTests extends BaseControllerTest {
     @Autowired
     AccountRepository accountRepository;
 
-    @Before
-    public void setUp() {
-        this.eventRepository.deleteAll();
-        this.accountRepository.deleteAll();
-    }
+    @Autowired
+    AppProperties appProperties;
+
+//    @Before
+//    public void setUp() {
+//        this.eventRepository.deleteAll();
+//        this.accountRepository.deleteAll();
+//    }
 
     @Test
     @TestDescription("정상적으로 이벤트를 생성하는 테스트")
@@ -101,7 +102,7 @@ public class EventControllerTests extends BaseControllerTest {
                                 headerWithName(HttpHeaders.LOCATION).description("Location Header"),
                                 headerWithName(HttpHeaders.CONTENT_TYPE).description("Content Type")
                         ),
-                        responseFields(
+                        relaxedResponseFields(
                                 fieldWithPath("id").description("identifier of new event"),
                                 fieldWithPath("name").description("Name of new event"),
                                 fieldWithPath("description").description("description of new event"),
@@ -132,22 +133,10 @@ public class EventControllerTests extends BaseControllerTest {
 
     private String GetAccessToken() throws Exception {
 
-        String username = "chany@kakao.com";
-        String password = "chany";
-        Account chany = Account.builder()
-                .email(username)
-                .password(password)
-                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-                .build();
-        this.accountService.saveAccount(chany);
-
-        String clientId = "myApp";
-        String clientSecret = "pass";
-
         ResultActions perform = this.mockMvc.perform(post("/oauth/token")
-                .with(httpBasic(clientId, clientSecret))    // Basic OAuth 헤더 생성
-                .param("username", username)          // 필요 파라미터 입력
-                .param("password", password)
+                .with(httpBasic(appProperties.getClientId(), appProperties.getClientSecret()))    // Basic OAuth 헤더 생성
+                .param("username", appProperties.getUserUsername())          // 필요 파라미터 입력
+                .param("password", appProperties.getUserPassword())
                 .param("grant_type", "password"));
 
         var responseBody = perform.andReturn().getResponse().getContentAsString();

@@ -1,10 +1,11 @@
 [source,options="nowrap"]
 ----
 {
-  "id" : 36,
+  "id" : 38,
   "offline" : true,
   "free" : false,
   "eventStatus" : "DRAFT",
+  "manager" : null,
   "name" : "event100",
   "description" : "REST API Development with Spring",
   "beginEnrollmentDateTime" : "2021-02-28T18:32:00",
@@ -17,7 +18,7 @@
   "limitOfEnrollment" : 100,
   "_links" : {
     "self" : {
-      "href" : "http://localhost:8080/api/events/36"
+      "href" : "http://localhost:8080/api/events/38"
     },
     "profile" : {
       "href" : "docs/index.html#resources-events-get"

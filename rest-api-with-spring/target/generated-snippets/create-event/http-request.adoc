@@ -2,6 +2,7 @@
 ----
 POST /api/events/ HTTP/1.1
 Content-Type: application/json;charset=UTF-8
+Authorization: Bearer ce1a79fe-9eaf-4639-9559-729cc1b385c2
 Accept: application/hal+json
 Content-Length: 393
 Host: localhost:8080
