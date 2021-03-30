@@ -1,6 +1,7 @@
 [source,http,options="nowrap"]
 ----
 GET /api/events?page=1&size=10&sort=name%2CDESC HTTP/1.1
+Authorization: Bearer 1c98ec5f-1e1d-4e80-b76f-899a0d0de55f
 Host: localhost:8080
 
 ----
