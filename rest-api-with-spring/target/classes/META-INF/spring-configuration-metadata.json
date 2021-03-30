@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "my-app",
+      "type": "chany.common.AppProperties",
+      "sourceType": "chany.common.AppProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "my-app.admin-password",
+      "type": "java.lang.String",
+      "sourceType": "chany.common.AppProperties"
+    },
+    {
+      "name": "my-app.admin-username",
+      "type": "java.lang.String",
+      "sourceType": "chany.common.AppProperties"
+    },
+    {
+      "name": "my-app.client-id",
+      "type": "java.lang.String",
+      "sourceType": "chany.common.AppProperties"
+    },
+    {
+      "name": "my-app.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "chany.common.AppProperties"
+    },
+    {
+      "name": "my-app.user-password",
+      "type": "java.lang.String",
+      "sourceType": "chany.common.AppProperties"
+    },
+    {
+      "name": "my-app.user-username",
+      "type": "java.lang.String",
+      "sourceType": "chany.common.AppProperties"
+    }
+  ],
+  "hints": []
+}
