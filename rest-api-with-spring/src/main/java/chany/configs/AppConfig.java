@@ -50,12 +50,12 @@ public class AppConfig {
                         .build();
                 accountService.saveAccount(admin);
 
-                Account user = Account.builder()
-                        .email(appProperties.getUserUsername())
-                        .password(appProperties.getUserPassword())
-                        .roles(Set.of(AccountRole.USER))
-                        .build();
-                accountService.saveAccount(user);
+//                Account user = Account.builder()
+//                        .email(appProperties.getUserUsername())
+//                        .password(appProperties.getUserPassword())
+//                        .roles(Set.of(AccountRole.USER))
+//                        .build();
+//                accountService.saveAccount(user);
 
             }
         };
