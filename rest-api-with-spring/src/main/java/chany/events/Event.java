@@ -18,7 +18,7 @@ public class Event {
     private boolean offline;
     private boolean free;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private EventStatus eventStatus = EventStatus.DRAFT;
 
     @ManyToOne
