@@ -21,15 +21,10 @@ public class JpaMain {
         try{
 
             // 비영속
-            Member member = new Member();
-            member.setId(3L);
-            member.setName("Hello JPA world");
-
-            // 영속
-            System.out.println("=== BEFORE ===");
+            Member member = new Member(200L, "member 200");
             em.persist(member);
-            System.out.println("=== AFTER ===");
 
+            em.flush();
 
             tx.commit();
         }catch (Exception e) {

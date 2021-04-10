@@ -7,9 +7,16 @@ import javax.persistence.Id;
 @Entity(name = "Member")
 public class Member {
 
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Member() {
+    }
+
     @Id
     private Long id;
-    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default 'EMPTY")
     private String name;
 
     public Long getId() {
