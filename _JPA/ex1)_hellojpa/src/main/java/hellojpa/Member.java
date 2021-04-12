@@ -6,24 +6,20 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Table(name = "MBR")
-@TableGenerator(
-        name = "MEMBER_SEQ_GEN",
-        table = "MY_SEQ",
-        pkColumnName = "MEMBER_SEQ", allocationSize = 1
-)
 public class Member {
 
     public Member() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE,
-                    generator = "MEMBER_SEQ_GEN")
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
     public Long getId() {
         return id;
@@ -39,5 +35,13 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 }
