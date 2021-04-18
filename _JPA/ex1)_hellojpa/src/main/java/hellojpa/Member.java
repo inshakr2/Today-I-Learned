@@ -24,12 +24,12 @@ public class Member {
 //    private Long teamId;
 
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
+    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
     private Team team;
-
-    @ManyToMany
-    @JoinTable(name = "MEMBER_PRODUCT")
-    private List<Product> products = new ArrayList<>();
+//
+//    @ManyToMany
+//    @JoinTable(name = "MEMBER_PRODUCT")
+//    private List<Product> products = new ArrayList<>();
 
     public Long getId() {
         return id;
