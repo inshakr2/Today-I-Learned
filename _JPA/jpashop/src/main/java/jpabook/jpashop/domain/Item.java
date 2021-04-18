@@ -17,6 +17,9 @@ public class Item {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    @OneToMany(mappedBy = "category")
+    private List<CategoryItem> categories = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
