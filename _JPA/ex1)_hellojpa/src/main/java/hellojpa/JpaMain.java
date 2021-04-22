@@ -20,18 +20,18 @@ public class JpaMain {
 
         try{
 
-            Movie movie = new Movie();
-            movie.setDirector("A");
-            movie.setActor("B");
-            movie.setName("바람과 함께 사라지다.");
-            movie.setPrice(10000);
+            Member member = new Member();
+            member.setUsername("hello");
 
-            em.persist(movie);
+            em.persist(member);
 
             em.flush();
             em.clear();
 
-            em.find(Item.class, movie.getId());
+            Member findMember = em.getReference(Member.class, member.getId());
+            System.out.println(findMember.getId());
+            System.out.println(findMember.getUsername());
+
 
             tx.commit();
         }catch (Exception e) {
