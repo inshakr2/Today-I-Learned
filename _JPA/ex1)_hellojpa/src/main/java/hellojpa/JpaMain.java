@@ -1,9 +1,8 @@
 package hellojpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
 import java.util.List;
 
 public class JpaMain {
@@ -20,21 +19,26 @@ public class JpaMain {
 
         try{
 
-            Member member = new Member();
-            member.setUsername("hello");
-
-            em.persist(member);
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            em.persist(member1);
 
             em.flush();
             em.clear();
 
-            Member findMember = em.getReference(Member.class, member.getId());
-            System.out.println(findMember.getId());
-            System.out.println(findMember.getUsername());
+            Member reference = em.getReference(Member.class, member1.getId());
+            System.out.println(reference.getClass()); // proxy
 
+            PersistenceUnitUtil persistenceUnitUtil = emf.getPersistenceUnitUtil();
+            System.out.println(persistenceUnitUtil.isLoaded(reference)); // false
+
+            // 초기화
+            Hibernate.initialize(reference);
+            System.out.println(persistenceUnitUtil.isLoaded(reference)); // true
 
             tx.commit();
         }catch (Exception e) {
+            e.printStackTrace();
             tx.rollback();
         } finally {
             em.close();
