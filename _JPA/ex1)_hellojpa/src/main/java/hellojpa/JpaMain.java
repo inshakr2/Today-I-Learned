@@ -18,25 +18,20 @@ public class JpaMain {
         tx.begin();
 
         try{
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            Team team = new Team();
-            team.setName("TEAM1");
-            em.persist(team);
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setTeam(team);
-            em.persist(member);
+            em.persist(parent);
 
             em.flush();
             em.clear();
 
-            List<Member> members = em.createQuery("select m from Member m join fetch m.team", Member.class)
-                    .getResultList();
-            // SQL : SELECT * FROM member
-            // 먼저 모든 Member 조회쿼리가 나간 뒤에, EAGER를 확인..
-            // 조회된 Member 각각이 가지고 있는 Team을 where조건 절에 추가하여 Team을 다시 조회..
-
+            Parent findParent = em.find(Parent.class, parent.getId());
+            em.remove(findParent);
 
             tx.commit();
         }catch (Exception e) {
