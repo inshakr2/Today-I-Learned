@@ -17,10 +17,10 @@ public class Team {
     @JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<>();
 
-    public void addMember(Member member) {
-        member.setTeam(this);
-        members.add(member);
-    }
+//    public void addMember(Member member) {
+//        member.setTeam(this);
+//        members.add(member);
+//    }
 
     public List<Member> getMembers() {
         return members;

@@ -1,8 +1,11 @@
 package hellojpa;
 
+import hellojpa.embeded.Address;
+import hellojpa.embeded.Period;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class JpaMain {
@@ -18,20 +21,13 @@ public class JpaMain {
         tx.begin();
 
         try{
-            Child child1 = new Child();
-            Child child2 = new Child();
+            Member member = new Member();
+            member.setUsername("hello");
 
-            Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
+            member.setHomeAddres(new Address("city", "street", "zip"));
+            member.setWorkPeriod(new Period());
 
-            em.persist(parent);
-
-            em.flush();
-            em.clear();
-
-            Parent findParent = em.find(Parent.class, parent.getId());
-            em.remove(findParent);
+            em.persist(member);
 
             tx.commit();
         }catch (Exception e) {
