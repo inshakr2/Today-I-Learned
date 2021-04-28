@@ -22,21 +22,44 @@ public class JpaMain {
 
         try{
 
-            Address address = new Address("city", "street", "zip");
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setHomeAddress(new Address("homeCity", "street", "10000"));
 
-            Member member1 = new Member();
-            member1.setUsername("m1");
-            member1.setHomeAddres(address);
-            em.persist(member1);
+            member.getFavoriteFoods().add("치킨");
+            member.getFavoriteFoods().add("족발");
+            member.getFavoriteFoods().add("피자");
 
-            Address newAddress = new Address("Another City", address.getStreet(), address.getZipcode());
+            member.getAddressHisory().add(new AddressEntity("old1", "street", "100"));
+            member.getAddressHisory().add(new AddressEntity("old2", "street", "100"));
+            member.getAddressHisory().add(new AddressEntity("old3", "street", "100"));
+            member.getAddressHisory().add(new AddressEntity("old4", "street", "100"));
 
-            Member member2 = new Member();
-            member2.setUsername("m1");
-            member2.setHomeAddres(address);
-            em.persist(member2);
+            em.persist(member);
 
-//            member1.getHomeAddres().setCity("New City");
+            em.flush();
+            em.clear();
+
+            System.out.println("=============== START ===============");
+            Member findMember = em.find(Member.class, member.getId());
+
+//            findMember.setHomeAddress().setCity("bla"); 이런식은 안됨..
+//            Address orgAddress = findMember.getHomeAddress();
+//            findMember.setHomeAddress(
+//                    new Address("New City", orgAddress.getStreet(), orgAddress.getZipcode())
+//            );
+
+            // Food, 치킨 -> 한식
+//            findMember.getFavoriteFoods().remove("치킨");
+//            findMember.getFavoriteFoods().add("한식");
+
+            // Address history
+//            findMember.getAddressHisory().remove(
+//                    new Address("old1", "street", "100")
+//            );
+//            findMember.getAddressHisory().add(
+//                    new Address("New City", "street", "100")
+//            );
 
             tx.commit();
         }catch (Exception e) {
