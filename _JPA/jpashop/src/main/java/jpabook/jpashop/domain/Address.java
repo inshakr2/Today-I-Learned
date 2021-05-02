@@ -1,14 +1,22 @@
 package jpabook.jpashop.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
-public class Adress {
+public class Address {
 
+    @Column(length = 10)
     private String city;
+    @Column(length = 20)
     private String street;
+    @Column(length = 5)
     private String zipcode;
+
+    private String fullAddress() {
+        return getCity() + getStreet() + getZipcode();
+    }
 
     public String getCity() {
         return city;
@@ -26,7 +34,7 @@ public class Adress {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Adress adress = (Adress) o;
+        Address adress = (Address) o;
         return Objects.equals(getCity(), adress.getCity()) &&
                 Objects.equals(getStreet(), adress.getStreet()) &&
                 Objects.equals(getZipcode(), adress.getZipcode());

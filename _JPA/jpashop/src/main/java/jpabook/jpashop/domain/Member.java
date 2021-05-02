@@ -12,8 +12,8 @@ public class Member extends BaseEntity{
     private Long id;
     private String name;
 
-    @Embeddable
-    private Adress address;
+    @Embedded
+    private Address address;
 
 
     @OneToMany(mappedBy = "member")
@@ -43,5 +43,11 @@ public class Member extends BaseEntity{
         this.name = name;
     }
 
+    public Address getAddress() {
+        return address;
+    }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
