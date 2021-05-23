@@ -1,9 +1,9 @@
 package jpql;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import jpql.domain.Member;
+
+import javax.persistence.*;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -18,6 +18,28 @@ public class JpaMain {
         tx.begin();
 
         try{
+
+            Member member = new Member();
+            member.setUsername("chany");
+            member.setAge(10);
+            em.persist(member);
+
+            TypedQuery<Member> typeQuery = em.createQuery("select m from Member m", Member.class);
+            List<Member> resultList = typeQuery.getResultList();
+            Member singleResult = typeQuery.getSingleResult();
+
+            // 이름 기준 바인딩
+            em.createQuery("select m from Member m where m.username = :username", Member.class)
+                    .setParameter("username", "chany")
+                    .getSingleResult();
+
+            // 위치 기준 바인딩
+            em.createQuery("select m from Member m where m.username = ?1")
+                    .setParameter(1, "chany")
+                    .getSingleResult();
+
+            Query query = em.createQuery("select m.username, m.age from Member m");
+
             tx.commit();
         }catch (Exception e) {
             e.printStackTrace();
