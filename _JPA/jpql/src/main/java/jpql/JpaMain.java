@@ -21,39 +21,27 @@ public class JpaMain {
 
         try{
 
-            Member member = new Member();
-            member.setUsername("chany");
-            member.setAge(10);
-            em.persist(member);
+            for (int i = 0; i < 100; i++) {
+
+                Member member = new Member();
+                member.setUsername("chany" + i);
+                member.setAge(i);
+                em.persist(member);
+            }
 
             em.flush();
             em.clear();
 
-//            List<Member> result = em.createQuery("select m from Member m", Member.class)
-//                    .getResultList();
-
-//            Member findMember = result.get(0);
-//            findMember.setAge(20);
-
-//            em.createQuery("select o.address from Order o", Address.class)
-//                    .getResultList();
-
-
-//            em.createQuery("select a from Address a", Address.class)
-//                    .getResultList();     임베디드 타입 직접 조회 불가능!
-
-            List<Object[]> resultList = em.createQuery("select m.id, m.username, m.age from Member m")
+            List<Member> result = em.createQuery("select m from Member m order by m.age desc", Member.class)
+                    .setFirstResult(0)
+                    .setMaxResults(20)
                     .getResultList();
 
-            Object[] res = resultList.get(0);
+            System.out.println("result size : " + result.size());
 
-            List<MemberDTO> result = em.createQuery("select new jpql.DTO.MemberDTO(m.username, m.age) from Member m", MemberDTO.class)
-                    .getResultList();
-
-            MemberDTO memberDTO = result.get(0);
-            System.out.println("memberDTO.getAge() = " + memberDTO.getAge());
-            System.out.println("memberDTO.getUsername() = " + memberDTO.getUsername());
-
+            for (Member member : result) {
+                System.out.println(member);
+            }
 
             tx.commit();
         }catch (Exception e) {
