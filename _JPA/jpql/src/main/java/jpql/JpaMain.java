@@ -1,5 +1,7 @@
 package jpql;
 
+import jpql.DTO.MemberDTO;
+import jpql.domain.Address;
 import jpql.domain.Member;
 
 import javax.persistence.*;
@@ -24,21 +26,34 @@ public class JpaMain {
             member.setAge(10);
             em.persist(member);
 
-            TypedQuery<Member> typeQuery = em.createQuery("select m from Member m", Member.class);
-            List<Member> resultList = typeQuery.getResultList();
-            Member singleResult = typeQuery.getSingleResult();
+            em.flush();
+            em.clear();
 
-            // 이름 기준 바인딩
-            em.createQuery("select m from Member m where m.username = :username", Member.class)
-                    .setParameter("username", "chany")
-                    .getSingleResult();
+//            List<Member> result = em.createQuery("select m from Member m", Member.class)
+//                    .getResultList();
 
-            // 위치 기준 바인딩
-            em.createQuery("select m from Member m where m.username = ?1")
-                    .setParameter(1, "chany")
-                    .getSingleResult();
+//            Member findMember = result.get(0);
+//            findMember.setAge(20);
 
-            Query query = em.createQuery("select m.username, m.age from Member m");
+//            em.createQuery("select o.address from Order o", Address.class)
+//                    .getResultList();
+
+
+//            em.createQuery("select a from Address a", Address.class)
+//                    .getResultList();     임베디드 타입 직접 조회 불가능!
+
+            List<Object[]> resultList = em.createQuery("select m.id, m.username, m.age from Member m")
+                    .getResultList();
+
+            Object[] res = resultList.get(0);
+
+            List<MemberDTO> result = em.createQuery("select new jpql.DTO.MemberDTO(m.username, m.age) from Member m", MemberDTO.class)
+                    .getResultList();
+
+            MemberDTO memberDTO = result.get(0);
+            System.out.println("memberDTO.getAge() = " + memberDTO.getAge());
+            System.out.println("memberDTO.getUsername() = " + memberDTO.getUsername());
+
 
             tx.commit();
         }catch (Exception e) {
