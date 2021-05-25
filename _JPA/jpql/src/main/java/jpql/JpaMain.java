@@ -36,8 +36,9 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m inner join m.team t";
+//            String query = "select m from Member m inner join m.team t";
 //            String query = "select m from Member m left outer join m.team t";
+            String query = "select (select avg(a.age) from Member a) from Member m";
             List<Member> result = em.createQuery(query, Member.class).getResultList();
 
             tx.commit();
