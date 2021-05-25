@@ -3,6 +3,7 @@ package jpql;
 import jpql.DTO.MemberDTO;
 import jpql.domain.Address;
 import jpql.domain.Member;
+import jpql.domain.Team;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,27 +22,23 @@ public class JpaMain {
 
         try{
 
-            for (int i = 0; i < 100; i++) {
+            Team team = new Team();
+            team.setName("team");
+            em.persist(team);
 
-                Member member = new Member();
-                member.setUsername("chany" + i);
-                member.setAge(i);
-                em.persist(member);
-            }
+            Member member = new Member();
+            member.setUsername("chany");
+            member.setAge(20);
+            member.changeTeam(team);
+
+            em.persist(member);
 
             em.flush();
             em.clear();
 
-            List<Member> result = em.createQuery("select m from Member m order by m.age desc", Member.class)
-                    .setFirstResult(0)
-                    .setMaxResults(20)
-                    .getResultList();
-
-            System.out.println("result size : " + result.size());
-
-            for (Member member : result) {
-                System.out.println(member);
-            }
+            String query = "select m from Member m inner join m.team t";
+//            String query = "select m from Member m left outer join m.team t";
+            List<Member> result = em.createQuery(query, Member.class).getResultList();
 
             tx.commit();
         }catch (Exception e) {
