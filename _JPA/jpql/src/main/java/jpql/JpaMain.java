@@ -28,7 +28,6 @@ public class JpaMain {
             em.persist(team);
 
             Member member = new Member();
-            member.setUsername("chany");
             member.setAge(20);
             member.changeTeam(team);
             member.setMemberType(MemberType.ADMIN);
@@ -38,14 +37,19 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-//            String query = "select m.username, 'HE''LLO', TRUE FROM Member m " +
-//                    "where m.memberType = jpql.domain.MemberType.ADMIN";
+//            String query =
+//                    "SELECT " +
+//                            "case when m.age <= 10 then '학생요금' " +
+//                            "     when m.age >= 60 then '경로요금' " +
+//                            "     else '일반요금' " +
+//                            "end " +
+//                    "FROM Member m";
 
-            String query = "select m.username, 'HE''LLO', TRUE FROM Member m " +
-                    "where m.memberType = :type";
-
+            String query =
+                    "SELECT coalesce(m.username, '이름 없는 회원'), " +
+                            "nullif(m.username, '관리자') " +
+                    "FROM Member m";
             em.createQuery(query)
-                    .setParameter("type", MemberType.ADMIN)
                     .getResultList();
 
             tx.commit();
