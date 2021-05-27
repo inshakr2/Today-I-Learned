@@ -9,6 +9,16 @@ public class Member {
     private Long id;
     private String username;
     private int age;
+    @Enumerated(EnumType.STRING)
+    private MemberType memberType;
+
+    public MemberType getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
+    }
 
     public void changeTeam(Team team) {
         this.team = team;

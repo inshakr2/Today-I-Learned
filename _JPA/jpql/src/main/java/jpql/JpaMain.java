@@ -3,6 +3,7 @@ package jpql;
 import jpql.DTO.MemberDTO;
 import jpql.domain.Address;
 import jpql.domain.Member;
+import jpql.domain.MemberType;
 import jpql.domain.Team;
 
 import javax.persistence.*;
@@ -30,16 +31,22 @@ public class JpaMain {
             member.setUsername("chany");
             member.setAge(20);
             member.changeTeam(team);
+            member.setMemberType(MemberType.ADMIN);
 
             em.persist(member);
 
             em.flush();
             em.clear();
 
-//            String query = "select m from Member m inner join m.team t";
-//            String query = "select m from Member m left outer join m.team t";
-            String query = "select (select avg(a.age) from Member a) from Member m";
-            List<Member> result = em.createQuery(query, Member.class).getResultList();
+//            String query = "select m.username, 'HE''LLO', TRUE FROM Member m " +
+//                    "where m.memberType = jpql.domain.MemberType.ADMIN";
+
+            String query = "select m.username, 'HE''LLO', TRUE FROM Member m " +
+                    "where m.memberType = :type";
+
+            em.createQuery(query)
+                    .setParameter("type", MemberType.ADMIN)
+                    .getResultList();
 
             tx.commit();
         }catch (Exception e) {
