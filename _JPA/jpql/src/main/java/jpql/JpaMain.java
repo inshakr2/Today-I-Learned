@@ -38,17 +38,12 @@ public class JpaMain {
             em.clear();
 
 //            String query =
-//                    "SELECT " +
-//                            "case when m.age <= 10 then '학생요금' " +
-//                            "     when m.age >= 60 then '경로요금' " +
-//                            "     else '일반요금' " +
-//                            "end " +
+//                    "SELECT concat('a', 'b') " +
 //                    "FROM Member m";
-
             String query =
-                    "SELECT coalesce(m.username, '이름 없는 회원'), " +
-                            "nullif(m.username, '관리자') " +
+                    "SELECT function('group_concat', m.username) " +
                     "FROM Member m";
+
             em.createQuery(query)
                     .getResultList();
 
