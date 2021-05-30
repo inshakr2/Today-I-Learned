@@ -30,19 +30,16 @@ public class JpaMain {
             Member member = new Member();
             member.setAge(20);
             member.changeTeam(team);
-            member.setMemberType(MemberType.ADMIN);
 
             em.persist(member);
 
             em.flush();
             em.clear();
 
-//            String query =
-//                    "SELECT concat('a', 'b') " +
-//                    "FROM Member m";
             String query =
-                    "SELECT function('group_concat', m.username) " +
-                    "FROM Member m";
+                    "SELECT m.username " +
+                    "FROM Team t " +
+                    "JOIN t.members m";
 
             em.createQuery(query)
                     .getResultList();
