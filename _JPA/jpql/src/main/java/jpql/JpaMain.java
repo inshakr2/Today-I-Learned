@@ -50,15 +50,13 @@ public class JpaMain {
             em.clear();
 
             String query =
-                    "SELECT DISTINCT t " +
-                    "FROM Team t " +
-                    "JOIN FETCH t.members";
-
+                    "SELECT t " +
+                    "FROM Team t";
 
             List<Team> resultList = em.createQuery(query, Team.class)
+                    .setFirstResult(0)
+                    .setMaxResults(2)
                     .getResultList();
-
-            System.out.println(resultList.size()); // = 2
 
 
             for (Team team : resultList) {
