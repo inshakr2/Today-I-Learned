@@ -49,35 +49,9 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query1 =
-                    "SELECT m " +
-                    "FROM Member m " +
-                    "WHERE m = :member";
-            String query2 =
-                    "SELECT m " +
-                    "FROM Member m " +
-                    "WHERE m.id = :memberId";
-            String query3 =
-                    "SELECT m " +
-                    "FROM Member m " +
-                    "WHERE m.team = :team";
-
-
-            em.createQuery(query1)
-                    .setParameter("member", member1)
+            em.createNamedQuery("Member.findByUsername", Member.class)
+                    .setParameter("username", "member1")
                     .getResultList();
-
-            em.createQuery(query2)
-                    .setParameter("memberId", member1.getId())
-                    .getResultList();
-
-            em.createQuery(query3)
-                    .setParameter("team", teamA)
-                    .getResultList();
-
-
-
-
             tx.commit();
         }catch (Exception e) {
             e.printStackTrace();
