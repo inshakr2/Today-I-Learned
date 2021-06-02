@@ -49,22 +49,34 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query =
-                    "SELECT t " +
-                    "FROM Team t";
+            String query1 =
+                    "SELECT m " +
+                    "FROM Member m " +
+                    "WHERE m = :member";
+            String query2 =
+                    "SELECT m " +
+                    "FROM Member m " +
+                    "WHERE m.id = :memberId";
+            String query3 =
+                    "SELECT m " +
+                    "FROM Member m " +
+                    "WHERE m.team = :team";
 
-            List<Team> resultList = em.createQuery(query, Team.class)
-                    .setFirstResult(0)
-                    .setMaxResults(2)
+
+            em.createQuery(query1)
+                    .setParameter("member", member1)
+                    .getResultList();
+
+            em.createQuery(query2)
+                    .setParameter("memberId", member1.getId())
+                    .getResultList();
+
+            em.createQuery(query3)
+                    .setParameter("team", teamA)
                     .getResultList();
 
 
-            for (Team team : resultList) {
-                System.out.println("team = " + team.getName() + ", size = " + team.getMembers().size());
-                for (Member member : team.getMembers()) {
-                    System.out.println("\t-> member = " + member);
-                }
-            }
+
 
             tx.commit();
         }catch (Exception e) {
