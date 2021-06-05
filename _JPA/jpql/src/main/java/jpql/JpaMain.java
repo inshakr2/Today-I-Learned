@@ -46,23 +46,14 @@ public class JpaMain {
             member3.changeTeam(teamB);
             em.persist(member3);
 
-
+            em.clear();
+            em.flush();
 
             int resultCount = em.createQuery("update Member m set m.age = 20")
                     .executeUpdate();
 
-            System.out.println("member1.getAge() = " + member1.getAge()); // 0
-            System.out.println("member2.getAge() = " + member2.getAge()); // 0
-            System.out.println("member3.getAge() = " + member3.getAge()); // 0
-
-
-            Member ex_member = em.find(Member.class, member1.getId());
-            System.out.println("ex_member.getAge() = " + ex_member.getAge()); // 0
-
-            em.clear();
-
-            Member aft_member = em.find(Member.class, member1.getId());
-            System.out.println("aft_member.getAge() = " + aft_member.getAge()); // 20
+            Member member = em.find(Member.class, member1.getId());
+            System.out.println("ex_member.getAge() = " + member.getAge()); // 20
 
 
             tx.commit();
