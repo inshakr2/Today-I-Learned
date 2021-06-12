@@ -14,19 +14,19 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 public class MemberRepositoryTest {
 
-    @Autowired
-    MemberRepository memberRepository;
-
-    @Test
-    @Transactional
-    public void testMember() throws Exception {
-        Member member = new Member();
-        member.setUsername("chany");
-
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.find(saveId);
-
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-    }
+//    @Autowired
+//    MemberRepository memberRepository;
+//
+//    @Test
+//    @Transactional
+//    public void testMember() throws Exception {
+//        Member member = new Member();
+//        member.setUsername("chany");
+//
+//        Long saveId = memberRepository.save(member);
+//        Member findMember = memberRepository.find(saveId);
+//
+//        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+//        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+//    }
 }
