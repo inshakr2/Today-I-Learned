@@ -13,13 +13,13 @@ import javax.persistence.QueryHint;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, Long>, MemberRepositoryCustom {
+public interface MemberRepository extends JpaRepository<Member, Long>, MemberRepositoryCustom, JpaSpecificationExecutor<Member> {
 
     List<Member> findByUsernameAndAgeGreaterThan(String username, int age);
 
     List<Member> findTop3HelloBy();
 
-//    @Query(name = "Member.findByUsername")
+    //    @Query(name = "Member.findByUsername")
     List<Member> findByUsername(@Param("username") String username);
 
     @Query("SELECT m FROM Member m WHERE m.username = :username AND m.age = :age")
@@ -35,13 +35,16 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
     List<Member> findByNames(@Param("names") List<String> names);
 
     List<Member> findListByUsername(String username); // 컬렉션
+
     Member findMemberByUsername(String username); // 단건
+
     Optional<Member> findOptionalByUsername(String username); // optional 단건
 
     @Query(value = "SELECT m FROM Member m LEFT JOIN m.team t",
             countQuery = "SELECT COUNT(m.username) FROM Member m"
     )
     Page<Member> findByAge(int age, Pageable pageable);
+
     Slice<Member> findSliceByAge(int age, Pageable pageable);
 
     // Bulk
@@ -62,7 +65,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
     @Query("SELECT m FROM Member m")
     List<Member> findMemberEntityGraph();
 
-//    @EntityGraph(attributePaths = ("team"))
+    //    @EntityGraph(attributePaths = ("team"))
     @EntityGraph("Member.all")
     List<Member> findEntityGraphByUsername(@Param("username") String username);
 
@@ -73,6 +76,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
     // select for update
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     List<Member> findLockByUsername(String username);
+
 
 }
 
