@@ -3,10 +3,7 @@ package study.datajpa.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -317,5 +314,35 @@ class MemberRepositoryTest {
 
         Specification<Member> spec = MemberSpec.username("m1").and(MemberSpec.teamName("teamA"));
         List<Member> result = memberRepository.findAll(spec);
+    }
+
+    @Test
+    public void queryByExample() {
+        Team team = new Team("team");
+        em.persist(team);
+
+        Member m1 = new Member("m1", 0, team);
+        Member m2 = new Member("m2", 0, team);
+        em.persist(m1);
+        em.persist(m2);
+
+        em.flush();
+        em.clear();
+
+        // 동적인 조건을 주어야 할 때, 엔티티 자체가 검색조건이 된다.
+        Member member = new Member("m1");
+        // inner join만 가능..
+        Team teamA = new Team("teamA");
+        member.setTeam(teamA);
+
+
+        // 조건절 무시할 필드 작성. 기본적으로 값이 있는 필드값은 모두 조건절에 추가가 된다.
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withIgnorePaths("age");
+        Example<Member> example = Example.of(member, matcher);
+
+        List<Member> result = memberRepository.findAll(example);
+
+
     }
 }
