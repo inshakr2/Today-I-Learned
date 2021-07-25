@@ -342,7 +342,25 @@ class MemberRepositoryTest {
         Example<Member> example = Example.of(member, matcher);
 
         List<Member> result = memberRepository.findAll(example);
+    }
 
+    @Test
+    public void projections() {
+        Team team = new Team("team");
+        em.persist(team);
 
+        Member m1 = new Member("m1", 0, team);
+        Member m2 = new Member("m2", 0, team);
+        em.persist(m1);
+        em.persist(m2);
+
+        em.flush();
+        em.clear();
+
+        List<UsernameOnly> result = memberRepository.findProjectionsByUsername("m1",UsernameOnly.class);
+
+        for (UsernameOnly usernameOnly : result) {
+            System.out.println("usernameOnly = " + usernameOnly);
+        }
     }
 }
