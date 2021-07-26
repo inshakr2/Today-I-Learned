@@ -82,6 +82,20 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
 //    동적 Projection
     <T> List<T> findProjectionsByUsername(@Param("username") String username, Class<T> type);
 
+    // Native Query
+    @Query(
+            value = "SELECT * FROM member WHERE username = ?",
+            nativeQuery = true
+    )
+    Member findByNativeQuery(String username);
+
+    @Query(
+            value = "SELECT m.member_id as id, m.username, t.name as teamName " +
+                    "FROM member m LEFT JOIN team t",
+            countQuery = "SELECT COUNT(*) FROM member",
+            nativeQuery = true
+    )
+    Page<MemberProjection> findByNativeProjection(Pageable pageable);
 
 }
 
