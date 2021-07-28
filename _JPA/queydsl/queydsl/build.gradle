@@ -5,6 +5,7 @@ plugins {
 
 	// querydsl
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+
 }
 
 group = 'study'
@@ -37,8 +38,8 @@ test {
 	useJUnitPlatform()
 }
 
+//querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
-
 querydsl {
 	jpa = true
 	querydslSourcesDir = querydslDir
