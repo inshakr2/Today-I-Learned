@@ -1,5 +1,6 @@
 package study.queydsl;
 
+import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,10 @@ import study.queydsl.entity.QMember;
 import study.queydsl.entity.Team;
 
 import javax.persistence.EntityManager;
+
+import java.util.List;
+
+import static study.queydsl.entity.QMember.member;
 
 @SpringBootTest
 @Transactional
@@ -54,7 +59,9 @@ public class QueryDslBasicTest {
     @Test
     public void startQuerydsl() {
 //        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        QMember m = new QMember("m");
+//        QMember m = new QMember("m");
+
+        QMember m = member;
 
         Member findMember = queryFactory
                 .select(m)
@@ -63,5 +70,67 @@ public class QueryDslBasicTest {
                 .fetchOne();
 
         Assertions.assertThat(findMember.getUsername()).isEqualTo("member1");
+    }
+
+    @Test
+    public void startQuerydsl2() {
+        Member findMember = queryFactory
+                .select(member) // static import QMember.member
+                .from(member)
+                .where(member.username.eq("member1"))
+                .fetchOne();
+
+        Assertions.assertThat(findMember.getUsername()).isEqualTo("member1");
+    }
+
+    @Test
+    public void search() {
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .where(member.username.eq("member1")
+                        .and(member.age.eq(10)))
+                .fetchOne();
+
+    }
+    @Test
+    public void searchAndParam() {
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .where(
+                       member.username.eq("member1"),
+                       member.age.eq(10))
+                .fetchOne();
+    }
+
+    @Test
+    public void resultFetch() {
+//        List<Member> fetch = queryFactory
+//                .selectFrom(member)
+//                .fetch();
+//
+//        Member fetchOne = queryFactory
+//                .selectFrom(QMember.member)
+//                .fetchOne();
+//
+//        Member fetchFirst = queryFactory
+//                .selectFrom(QMember.member)
+//                .fetchFirst();
+
+//      total count 쿼리 + 일반 조회 쿼리
+//        QueryResults<Member> results = queryFactory
+//                .selectFrom(member)
+//                .fetchResults();
+//
+//        results.getTotal();
+//        List<Member> contents = results.getResults();
+//        results.getLimit();
+//        results.getOffset();
+
+//      count 쿼리
+        long total = queryFactory
+                .selectFrom(member)
+                .fetchCount();
+
+
     }
 }
