@@ -4,6 +4,7 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -279,4 +280,36 @@ public class QueryDslBasicTest {
                 .where(member.username.eq("member1"))
                 .fetch();
     }
+
+    /**
+     * 팀 A에 소속된 모든 회원
+     */
+    @Test
+    public void join() {
+        List<Member> result = queryFactory
+                .selectFrom(member)
+                .join(member.team, team)
+                .where(team.name.eq("teamA"))
+                .fetch();
+    }
+
+
+    /**
+     * 세타 조인
+     *  : 연관관계가 없는 필드로 조인
+     * 회원 이름 = 팀 이름
+     */
+    @Test
+    public void theta_join() {
+        em.persist(new Member("teamA"));
+        em.persist(new Member("teamB"));
+
+        queryFactory
+                .select(member)
+                .from(member, team)
+                .where(member.username.eq(team.name))
+                .fetch();
+    }
+
+
 }
