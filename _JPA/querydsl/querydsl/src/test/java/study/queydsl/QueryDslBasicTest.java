@@ -467,4 +467,29 @@ public class QueryDslBasicTest {
                 .from(member)
                 .fetch();
     }
+
+    @Test
+    public void simpleProjection() {
+        List<String> result = queryFactory
+                .select(member.username)
+                .from(member)
+                .fetch();
+
+        List<Member> result2 = queryFactory
+                .selectFrom(member)
+                .fetch();
+    }
+
+    @Test
+    public void tupleProjection() {
+        List<Tuple> result = queryFactory
+                .select(member.username, member.age)
+                .from(member)
+                .fetch();
+
+        for (Tuple tuple : result) {
+            tuple.get(member.username);
+            tuple.get(member.age);
+        }
+    }
 }
