@@ -673,4 +673,5 @@ public class QueryDslBasicTest {
                 .where(member.age.gt(18))
                 .execute();
     }
+
 }
