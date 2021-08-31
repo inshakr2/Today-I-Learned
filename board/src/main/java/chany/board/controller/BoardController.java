@@ -3,6 +3,8 @@ package chany.board.controller;
 import chany.board.dto.BoardDto;
 import chany.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +18,12 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/")
-    public String list(Model model) {
-        List<BoardDto> list = boardService.getBoardList();
+    public String list(@PageableDefault(value = 10, sort = "createdDate")Pageable pageable,
+                       Model model) {
+        List<BoardDto> list = boardService.getBoardList(pageable);
+        Integer[] pageList = boardService.getPageList(pageable);
         model.addAttribute("postList", list);
+        model.addAttribute("pageList", pageList);
         return "board/list.html";
     }
 

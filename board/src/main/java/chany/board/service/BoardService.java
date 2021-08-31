@@ -4,6 +4,10 @@ import chany.board.domain.Board;
 import chany.board.dto.BoardDto;
 import chany.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +17,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-
     private final BoardRepository boardRepository;
 
     @Transactional
@@ -21,8 +24,11 @@ public class BoardService {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
 
-    public List<BoardDto> getBoardList() {
-        List<Board> boardList = boardRepository.findAll();
+    public List<BoardDto> getBoardList(Pageable pageable) {
+
+        Page<Board> page = boardRepository.findAll(pageable);
+
+        List<Board> boardList = page.getContent();
         List<BoardDto> boardDtoList = new ArrayList<>();
 
         for (Board board : boardList) {
@@ -37,6 +43,18 @@ public class BoardService {
         }
 
         return boardDtoList;
+    }
+
+    public Integer[] getPageList(Pageable pageable) {
+        Page<Board> page = boardRepository.findAll(pageable);
+        int totalPage = page.getTotalPages();
+
+        Integer[] pageList = new Integer[totalPage];
+        for (int i = 0; i < totalPage; i++) {
+            pageList[i] = i;
+        }
+
+        return pageList;
     }
 
     public BoardDto getPost(Long id) {

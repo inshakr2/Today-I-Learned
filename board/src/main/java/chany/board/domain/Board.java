@@ -44,4 +44,10 @@ public class Board {
         this.title = title;
         this.content = content;
     }
+
+    public Board(String author, String title, String content) {
+        this.author = author;
+        this.title = title;
+        this.content = content;
+    }
 }
