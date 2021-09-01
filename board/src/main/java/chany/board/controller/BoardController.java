@@ -1,6 +1,7 @@
 package chany.board.controller;
 
 import chany.board.dto.BoardDto;
+import chany.board.dto.BoardSearchCondition;
 import chany.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -19,12 +20,19 @@ public class BoardController {
 
     @GetMapping("/")
     public String list(@PageableDefault(value = 10, sort = "createdDate")Pageable pageable,
+                       @ModelAttribute("condition") BoardSearchCondition boardSearchCondition,
                        Model model) {
         List<BoardDto> list = boardService.getBoardList(pageable);
         Integer[] pageList = boardService.getPageList(pageable);
         model.addAttribute("postList", list);
         model.addAttribute("pageList", pageList);
         return "board/list.html";
+    }
+
+    @GetMapping("/search")
+    public String search(@ModelAttribute("condition") BoardSearchCondition boardSearchCondition,
+                         Model model) {
+        return "/";
     }
 
     @GetMapping("/post")

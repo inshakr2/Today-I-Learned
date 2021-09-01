@@ -7,6 +7,18 @@
 </head>
 <body>
 <header th:insert="common/header.html"></header>
+
+<form th:object="${condition}" class="form-inline" action="/" method="GET">
+    <select>
+        <option th:value="*{title}" th:field="*{title}" class="form-control">제목</option>
+        <option th:value="*{author}" th:field="*{author}" class="form-control">작성자</option>
+    </select>
+    <div class="form-group mb-2">
+        <input type="text" class="formcontrol" placeholder="검색어"/>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">검색</button>
+</form>
+
 <div class="container">
     <table class="table">
         <thead class="thead-light">
