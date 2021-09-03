@@ -2,6 +2,7 @@ package chany.board.service;
 
 import chany.board.domain.Board;
 import chany.board.dto.BoardDto;
+import chany.board.dto.BoardSearchCondition;
 import chany.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ public class BoardService {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
 
-    public List<BoardDto> getBoardList(Pageable pageable) {
+    public List<BoardDto> getBoardList(BoardSearchCondition condition, Pageable pageable) {
 
         Page<Board> page = boardRepository.findAll(pageable);
 

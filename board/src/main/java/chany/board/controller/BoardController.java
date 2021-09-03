@@ -20,19 +20,13 @@ public class BoardController {
 
     @GetMapping("/")
     public String list(@PageableDefault(value = 10, sort = "createdDate")Pageable pageable,
-                       @ModelAttribute("condition") BoardSearchCondition boardSearchCondition,
+                       @ModelAttribute("condition") BoardSearchCondition condition,
                        Model model) {
-        List<BoardDto> list = boardService.getBoardList(pageable);
+        List<BoardDto> list = boardService.getBoardList(condition, pageable);
         Integer[] pageList = boardService.getPageList(pageable);
         model.addAttribute("postList", list);
         model.addAttribute("pageList", pageList);
         return "board/list.html";
-    }
-
-    @GetMapping("/search")
-    public String search(@ModelAttribute("condition") BoardSearchCondition boardSearchCondition,
-                         Model model) {
-        return "/";
     }
 
     @GetMapping("/post")

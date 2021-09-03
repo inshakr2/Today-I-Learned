@@ -28,6 +28,7 @@ public class BoardDto {
     }
 
     @Builder
+    @QueryProjection
     public BoardDto(Long id, String author, String title, String content, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.id = id;
         this.author = author;
@@ -37,12 +38,4 @@ public class BoardDto {
         this.modifiedDate = modifiedDate;
     }
 
-    @QueryProjection
-    public BoardDto(String author, String title, String content, LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        this.author = author;
-        this.title = title;
-        this.content = content;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
-    }
 }
