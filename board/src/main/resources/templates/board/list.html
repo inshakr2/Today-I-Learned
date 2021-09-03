@@ -56,7 +56,7 @@
 
     <nav aria-label="pagination pagination-sm">
         <ul class="pagination justify-content-center">
-            <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
+            <li class="page-item" th:each="pageNum : ${#numbers.sequence(0,totalPage-1)}" th:inline="text">
                     <a class="page-link" th:href="@{'/?page=' + ${pageNum}}">[[${pageNum+1}]]</a>
             </li>
         </ul>

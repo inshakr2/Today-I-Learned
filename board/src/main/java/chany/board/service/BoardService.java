@@ -25,7 +25,13 @@ public class BoardService {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
 
-    public List<BoardDto> getBoardList(BoardSearchCondition condition, Pageable pageable) {
+    public Page<BoardDto> getSearchList(BoardSearchCondition condition, Pageable pageable) {
+        Page<BoardDto> page = boardRepository.search(condition, pageable);
+
+        return page;
+    }
+
+    public List<BoardDto> getBoardList(Pageable pageable) {
 
         Page<Board> page = boardRepository.findAll(pageable);
 
