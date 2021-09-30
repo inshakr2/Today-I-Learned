@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +33,14 @@ public class BoardService {
         }
 
         return dtoList;
+    }
+
+    public BoardResponseDto getBoardDetail(Long id) {
+        Board board = boardRepository.findById(id).orElse(null);
+        BoardResponseDto detail = new BoardResponseDto(board.getId(), board.getAuthor(),
+                board.getTitle(), board.getContent(), board.getCreatedDate());
+
+        return detail;
     }
 
 }

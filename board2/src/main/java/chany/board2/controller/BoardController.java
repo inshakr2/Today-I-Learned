@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -36,4 +37,11 @@ public class BoardController {
         return "redirect:/";
     }
 
+    @GetMapping("/post/{id}")
+    public String detail(@PathVariable("id") Long id, Model model) {
+        BoardResponseDto boardDetail = boardService.getBoardDetail(id);
+        model.addAttribute("post" , boardDetail);
+
+        return "board/detail.html";
+    }
 }
