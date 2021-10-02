@@ -6,6 +6,7 @@ import chany.board2.dto.BoardResponseDto;
 import chany.board2.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
+    @Transactional
     public Board savePost(BoardDto boardDto) {
         Board board = boardRepository.save(Board.createBoard(boardDto));
 
@@ -41,6 +43,14 @@ public class BoardService {
                 board.getTitle(), board.getContent(), board.getCreatedDate());
 
         return detail;
+    }
+
+    @Transactional
+    public Board updatePost(Long id, BoardResponseDto boardResponseDto) {
+        Board board = boardRepository.findById(id).orElse(null);
+        board.updateBoard(boardResponseDto);
+
+        return boardRepository.save(board);
     }
 
 }

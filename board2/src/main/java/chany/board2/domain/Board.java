@@ -1,6 +1,7 @@
 package chany.board2.domain;
 
 import chany.board2.dto.BoardDto;
+import chany.board2.dto.BoardResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,5 +46,11 @@ public class Board {
         board.setTitle(boardDto.getTitle());
 
         return board;
+    }
+
+    public void updateBoard(BoardResponseDto boardDto) {
+        this.author = boardDto.getAuthor();
+        this.content = boardDto.getContent();
+        this.title = boardDto.getTitle();
     }
 }

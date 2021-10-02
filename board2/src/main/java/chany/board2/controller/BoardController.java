@@ -6,9 +6,7 @@ import chany.board2.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -40,8 +38,21 @@ public class BoardController {
     @GetMapping("/post/{id}")
     public String detail(@PathVariable("id") Long id, Model model) {
         BoardResponseDto boardDetail = boardService.getBoardDetail(id);
-        model.addAttribute("post" , boardDetail);
+        model.addAttribute("post", boardDetail);
 
         return "board/detail.html";
+    }
+
+    @GetMapping("/post/edit/{id}")
+    public String editPage(@PathVariable("id") Long id, Model model) {
+        BoardResponseDto boardDetail = boardService.getBoardDetail(id);
+        model.addAttribute("post", boardDetail);
+        return "/board/edit.html";
+    }
+
+    @PutMapping("/post/edit/{id}")
+    public String edit(@PathVariable("id") Long id, BoardResponseDto boardResponseDto) {
+        boardService.updatePost(id, boardResponseDto);
+        return "redirect:/";
     }
 }
