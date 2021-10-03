@@ -49,8 +49,13 @@ public class BoardService {
     public Board updatePost(Long id, BoardResponseDto boardResponseDto) {
         Board board = boardRepository.findById(id).orElse(null);
         board.updateBoard(boardResponseDto);
+        boardRepository.save(board);
+        return board;
+    }
 
-        return boardRepository.save(board);
+    @Transactional
+    public void deletePost(Long id) {
+        boardRepository.deleteById(id);
     }
 
 }

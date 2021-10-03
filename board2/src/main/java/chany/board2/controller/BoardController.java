@@ -50,9 +50,16 @@ public class BoardController {
         return "/board/edit.html";
     }
 
-    @PutMapping("/post/edit/{id}")
+    @PatchMapping("/post/edit/{id}")
     public String edit(@PathVariable("id") Long id, BoardResponseDto boardResponseDto) {
         boardService.updatePost(id, boardResponseDto);
         return "redirect:/";
     }
+
+    @DeleteMapping("/post/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        boardService.deletePost(id);
+        return "redirect:/";
+    }
+
 }
