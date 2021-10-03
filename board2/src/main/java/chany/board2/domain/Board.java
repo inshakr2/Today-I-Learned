@@ -48,9 +48,11 @@ public class Board {
         return board;
     }
 
-    public void updateBoard(BoardResponseDto boardDto) {
+    public Board updateBoard(BoardResponseDto boardDto) {
         this.author = boardDto.getAuthor();
         this.content = boardDto.getContent();
         this.title = boardDto.getTitle();
+
+        return this;
     }
 }
