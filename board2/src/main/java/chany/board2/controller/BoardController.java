@@ -2,6 +2,7 @@ package chany.board2.controller;
 
 import chany.board2.dto.BoardDto;
 import chany.board2.dto.BoardResponseDto;
+import chany.board2.dto.SearchCondition;
 import chany.board2.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,20 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/")
-    public String home(Model model) {
-        List<BoardResponseDto> boardList = boardService.getBoardList();
+    public String home(Model model,
+                       @ModelAttribute("condition") SearchCondition condition) {
+        List<BoardResponseDto> boardList = boardService.searchByCondition(condition);
         model.addAttribute("postList", boardList);
         return "board/home.html";
     }
+
+//    @GetMapping("/search")
+//    public String search(Model model,
+//                         @RequestParam SearchCondition condition) {
+//        List<BoardResponseDto> boardList = boardService.searchByCondition(condition);
+//        model.addAttribute("postList", boardList);
+//        return "board/search.html";
+//    }
 
     @GetMapping("/post")
     public String post() {

@@ -3,6 +3,7 @@ package chany.board2.service;
 import chany.board2.domain.Board;
 import chany.board2.dto.BoardDto;
 import chany.board2.dto.BoardResponseDto;
+import chany.board2.dto.SearchCondition;
 import chany.board2.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,11 @@ public class BoardService {
         }
 
         return dtoList;
+    }
+
+    public List<BoardResponseDto> searchByCondition(SearchCondition condition) {
+        return boardRepository.searchBoardByCondition(condition);
+
     }
 
     public BoardResponseDto getBoardDetail(Long id) {
