@@ -26,13 +26,13 @@ public class BoardController {
         return "board/home.html";
     }
 
-//    @GetMapping("/search")
-//    public String search(Model model,
-//                         @RequestParam SearchCondition condition) {
-//        List<BoardResponseDto> boardList = boardService.searchByCondition(condition);
-//        model.addAttribute("postList", boardList);
-//        return "board/search.html";
-//    }
+    @GetMapping("/search")
+    public String search(Model model,
+                         @RequestParam SearchCondition condition) {
+        List<BoardResponseDto> boardList = boardService.searchByCondition(condition);
+        model.addAttribute("postList", boardList);
+        return "board/search.html";
+    }
 
     @GetMapping("/post")
     public String post() {
