@@ -1,8 +1,9 @@
 package chany.board2.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 public class SearchCondition {
 
     private String author;
