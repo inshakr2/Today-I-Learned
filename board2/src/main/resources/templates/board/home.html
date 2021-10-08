@@ -56,6 +56,15 @@
             <a class="btn btn-primary" th:href="@{/post}" role="button">글쓰기</a>
         </div>
     </div>
+
+    <nav aria-label="pagination pagination-sm">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:each="pageNum : ${#numbers.sequence(0,totalPage-1)}" th:inline="text">
+                <a class="page-link" th:href="@{'/?page=' + ${pageNum}}">[[${pageNum+1}]]</a>
+            </li>
+        </ul>
+    </nav>
+
 </div>
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>

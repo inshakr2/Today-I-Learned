@@ -6,6 +6,8 @@ import chany.board2.dto.BoardResponseDto;
 import chany.board2.dto.SearchCondition;
 import chany.board2.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,8 +40,8 @@ public class BoardService {
         return dtoList;
     }
 
-    public List<BoardResponseDto> searchByCondition(SearchCondition condition) {
-        return boardRepository.searchBoardByCondition(condition);
+    public Page<BoardResponseDto> searchByCondition(SearchCondition condition, Pageable pageable) {
+        return boardRepository.searchBoardByCondition(condition, pageable);
 
     }
 

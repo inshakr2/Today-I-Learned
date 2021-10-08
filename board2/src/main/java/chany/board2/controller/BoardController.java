@@ -5,6 +5,9 @@ import chany.board2.dto.BoardResponseDto;
 import chany.board2.dto.SearchCondition;
 import chany.board2.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +23,12 @@ public class BoardController {
 
     @GetMapping("/")
     public String home(Model model,
-                       @ModelAttribute("condition") SearchCondition condition) {
-        List<BoardResponseDto> boardList = boardService.searchByCondition(condition);
-        model.addAttribute("postList", boardList);
+                       @ModelAttribute("condition") SearchCondition condition,
+                       @PageableDefault(value = 10, sort = "createdDate")Pageable pageable) {
+        Page<BoardResponseDto> search = boardService.searchByCondition(condition, pageable);
+
+        model.addAttribute("postList", search.getContent());
+        model.addAttribute("totalPage", search.getTotalPages());
         return "board/home.html";
     }
 

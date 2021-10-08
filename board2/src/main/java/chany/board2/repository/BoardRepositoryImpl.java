@@ -1,15 +1,17 @@
 package chany.board2.repository;
 
-import chany.board2.domain.QBoard;
 import chany.board2.dto.BoardResponseDto;
 import chany.board2.dto.QBoardResponseDto;
 import chany.board2.dto.SearchCondition;
+import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 
 import static chany.board2.domain.QBoard.board;
 
@@ -23,8 +25,8 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
     }
 
     @Override
-    public List<BoardResponseDto> searchBoardByCondition(SearchCondition condition) {
-        List<BoardResponseDto> results = queryFactory
+    public Page<BoardResponseDto> searchBoardByCondition(SearchCondition condition, Pageable pageable) {
+        QueryResults<BoardResponseDto> results = queryFactory
                 .select(new QBoardResponseDto(
                         board.id,
                         board.author,
@@ -34,12 +36,15 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                 ))
                 .from(board)
                 .where(
-                    authorLike(condition.getAuthor()),
-                    titleLike(condition.getTitle()),
-                    contentLike(condition.getContent())
-                ).fetch();
+                        authorLike(condition.getAuthor()),
+                        titleLike(condition.getTitle()),
+                        contentLike(condition.getContent())
+                )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetchResults();
 
-        return results;
+        return new PageImpl<>(results.getResults(), pageable, results.getTotal());
     }
 
     private BooleanExpression authorLike(String author) {
