@@ -9,7 +9,7 @@
 <header th:insert="common/header.html"></header>
 <div class="container">
 
-    <form th:object="${condition}" class="form-inline" action="/search" method="GET">
+    <form th:object="${condition}" class="form-inline" action="/" method="GET">
         <div class="form-group mb-2">
             <input type="text" th:field="*{author}" class="formcontrol" placeholder="작성자"/>
         </div>
