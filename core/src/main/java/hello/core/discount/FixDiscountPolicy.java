@@ -5,8 +5,8 @@ import hello.core.member.Member;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-//@Component
-//@Qualifier("oldDiscountPolicy")
+@Component
+@Qualifier("oldDiscountPolicy")
 public class FixDiscountPolicy implements DiscountPolicy {
 
     private int discountFixAmount = 1000;
