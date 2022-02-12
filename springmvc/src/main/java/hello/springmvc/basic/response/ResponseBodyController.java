@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-@Controller
-//@RestController
+//@Controller
+@RestController
 public class ResponseBodyController {
 
     @GetMapping("/response-body-string-v1")
@@ -27,7 +27,6 @@ public class ResponseBodyController {
     public ResponseEntity<String> responseBodyV2() {
         return new ResponseEntity<>("ok", HttpStatus.OK);
     }
-
 
     @ResponseBody
     @GetMapping("/response-body-string-v3")
@@ -43,7 +42,6 @@ public class ResponseBodyController {
         helloData.setAge(20);
         return new ResponseEntity<>(helloData, HttpStatus.OK);
     }
-
 
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
