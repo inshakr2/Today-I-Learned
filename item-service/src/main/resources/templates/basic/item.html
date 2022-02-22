@@ -15,6 +15,14 @@
     <div class="py-5 text-center">
         <h2>상품 상세</h2>
     </div>
+
+
+    <div class="badge bg-success text-wrap" style="width: 20rem; height: 3rem">
+
+        <h3 class="font-monospace" th:if="${param.status}" th:text="'Saved!'"></h3>
+
+    </div>
+
     <div>
         <label for="itemId">상품 ID</label>
         <input type="text" id="itemId" name="itemId" class="form-control"
