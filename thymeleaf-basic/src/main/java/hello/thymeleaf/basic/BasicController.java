@@ -98,6 +98,12 @@ public class BasicController {
         return "basic/condition";
     }
 
+    @GetMapping("/comment")
+    public String comment(Model model) {
+        model.addAttribute("data", "Spring!");
+        return "basic/comment";
+    }
+
 
     private void addUsers(Model model) {
 
