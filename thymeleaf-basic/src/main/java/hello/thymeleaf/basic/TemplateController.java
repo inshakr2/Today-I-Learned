@@ -10,10 +10,14 @@ public class TemplateController {
 
     @GetMapping("/fragment")
     public String fragment() {
-
         return "template/fragment/fragmentMain";
-
     }
+
+    @GetMapping("/layoutExtend")
+    public String layoutExtends() {
+        return "template/layoutExtend/layoutExtendMain";
+    }
+
 
     @GetMapping("/layout")
     public String layout() {
