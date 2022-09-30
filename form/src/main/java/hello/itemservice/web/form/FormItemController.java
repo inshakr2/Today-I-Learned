@@ -56,6 +56,8 @@ public class FormItemController {
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
+
+        log.info("item.regions={}", item.getRegions());
         return "redirect:/form/items/{itemId}";
     }
 
