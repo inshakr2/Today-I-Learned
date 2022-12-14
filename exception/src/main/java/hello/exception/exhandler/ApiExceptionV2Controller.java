@@ -1,12 +1,14 @@
 package hello.exception.exhandler;
 
 import hello.exception.exception.UserException;
+import hello.exception.exception.ViewException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @RestController
@@ -31,6 +33,12 @@ public class ApiExceptionV2Controller {
     public ErrorResult exHandle(Exception e) {
         log.error("[exceptionHandle] ex", e);
         return new ErrorResult("EX", "내부 오류");
+    }
+
+    @ExceptionHandler(ViewException.class)
+    public ModelAndView ex(ViewException e) {
+        log.info("exception e", e);
+        return new ModelAndView("error");
     }
 
     @GetMapping("/api2/members/{id}")
