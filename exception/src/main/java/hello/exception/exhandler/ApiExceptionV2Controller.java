@@ -15,13 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class ApiExceptionV2Controller {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResult illegalExHandle(IllegalArgumentException e) {
         log.error("[exceptionHandle] ex", e);
         return new ErrorResult("BAD", e.getMessage());
     }
 
-    @ExceptionHandler
     public ResponseEntity<ErrorResult> userExHandle(UserException e) {
         log.error("[exceptionHandle] ex", e);
         ErrorResult errorResult = new ErrorResult("USER-EX", e.getMessage());
@@ -29,13 +27,11 @@ public class ApiExceptionV2Controller {
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler
     public ErrorResult exHandle(Exception e) {
         log.error("[exceptionHandle] ex", e);
         return new ErrorResult("EX", "내부 오류");
     }
 
-    @ExceptionHandler(ViewException.class)
     public ModelAndView ex(ViewException e) {
         log.info("exception e", e);
         return new ModelAndView("error");
