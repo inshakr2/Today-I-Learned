@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
+// (annotations = RestController.class)
+// @ControllerAdvice(assignableTypes = {ControllerInterface.class,  AbstractController.class})
 public class ExControllerAdvice {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
