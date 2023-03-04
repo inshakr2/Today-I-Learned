@@ -18,18 +18,19 @@ import java.util.Collection;
 
 @Slf4j
 @Controller
-@RequestMapping("/servlet/v1")
-public class ServletUploadControllerV1 {
+@RequestMapping("/servlet/v2")
+public class ServletUploadControllerV2 {
 
     @GetMapping("/upload")
     public String newFile() {
         return "upload-form";
     }
 
-    @PostMapping("/upload")
-    public String saveFileV1(HttpServletRequest request) throws IOException, ServletException {
+    @Value("${file.dir}")
+    private String fileDir;
 
-        // MultipartHttpServletRequest -> MultipartResolver
+    @PostMapping("/upload")
+    public String saveFileV2(HttpServletRequest request) throws IOException, ServletException {
 
         log.info("request = {}", request);
 
@@ -39,6 +40,23 @@ public class ServletUploadControllerV1 {
         Collection<Part> parts = request.getParts();
         log.info("parts = {}", parts);
 
+        for (Part part : parts) {
+            log.info("=============================");
+            log.info("name = {}", part.getName());
+            part.getHeaderNames().forEach(
+                    h -> log.info("header {} : {}", h, part.getHeader(h))
+            );
+
+            log.info("submittedFileName = {}", part.getSubmittedFileName());
+            log.info("size = {}", part.getSize());
+
+            InputStream inputStream = part.getInputStream();
+            String body = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+            log.info("body = {}", body);
+
+        }
+
         return "upload-form";
     }
+
 }
