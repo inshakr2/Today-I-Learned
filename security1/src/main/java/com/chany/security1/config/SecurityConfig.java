@@ -31,7 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/loginForm") // 로그인 페이지 강제 지정 (로그인이 필요한 페이지일 경우 지정한 endpoint 로 redirection
                 .loginProcessingUrl("/login") // login 주소가 호출되면 시큐리티가 낚아채서 대신 로그인을 진행. 즉 Controller에 /login을 만들지 않아도 됨
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
+                .and()
+                .oauth2Login()
+                .loginPage("/loginForm");
 
 
 
