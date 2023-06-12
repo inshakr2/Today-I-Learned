@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilter(corsFilter) // @CrossOrigin은 인증이 없을 때 사용하고, 인증이 있을 경우 SecurityFilter에 등록해야함.
                 .formLogin().disable()
-                .httpBasic().disable()
+                .httpBasic().disable() // Basic Auth (ID + PW Header에 담아 요청하는 방식) 을 사용하지 않는다.
                 .authorizeRequests()
                     .antMatchers("/api/v1/user/**")
                         .hasAnyRole("USER", "MANAGER", "ADMIN")
