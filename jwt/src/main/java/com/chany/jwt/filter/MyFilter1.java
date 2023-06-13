@@ -21,8 +21,10 @@ public class MyFilter1 implements Filter {
         // 1. ID / PW 로그인 인증이 성공
         // 2. 토큰 발급
         // 3. 요청할 때마다 해당 토큰이 넘어오면 해당 토큰을 검증 (유효성 / 무결성)
-        if (req.getMethod().equalsIgnoreCase("post")) {
-            String headerAuth = req.getHeader("Authorization");
+
+        String headerAuth = req.getHeader("Authorization");
+        if (req.getMethod().equalsIgnoreCase("post") && headerAuth != null) {
+
             System.out.println("headerAuth = " + headerAuth);
 
             if (headerAuth.equalsIgnoreCase("chany")) {
