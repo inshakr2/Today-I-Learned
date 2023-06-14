@@ -1,7 +1,9 @@
 package com.chany.jwt.config;
 
 import com.chany.jwt.filter.JwtAuthenticationFilter;
+import com.chany.jwt.filter.JwtAuthorizationFilter;
 import com.chany.jwt.filter.MyFilter1;
+import com.chany.jwt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +21,7 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
+    private final UserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilter(corsFilter) // @CrossOrigin은 인증이 없을 때 사용하고, 인증이 있을 경우 SecurityFilter에 등록해야함.
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository))
                 .formLogin().disable()
                 .httpBasic().disable() // Basic Auth (ID + PW Header에 담아 요청하는 방식) 을 사용하지 않는다.
                 .authorizeRequests()

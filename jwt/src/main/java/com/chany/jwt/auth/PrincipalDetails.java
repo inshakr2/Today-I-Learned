@@ -29,7 +29,7 @@ public class PrincipalDetails implements UserDetails {
                 }
         );
 
-        return null;
+        return authorities;
     }
 
     @Override
