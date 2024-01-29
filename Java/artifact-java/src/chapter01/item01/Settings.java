@@ -2,6 +2,13 @@ package chapter01.item01;
 
 public class Settings {
 
+    /**
+     * private = 상속을 받을 수 없다.
+     *  Delegate pattern 을 사용하면 우회할 수 있고, 어떠한 관점에서 본다면 장점으로 볼 수 있다.
+     */
+    private Settings() {
+    }
+
     private boolean useAutoSteering;
     private boolean useABS;
     private Difficulty difficulty;
@@ -12,7 +19,17 @@ public class Settings {
      */
     private static final Settings SETTINGS = new Settings();
 
-    public static Settings newInstance() {
+    /**
+     * 정적 팩토리 메서드에 흔히 사용하는 명명 방식들
+     *  from
+     *  of
+     *  valueOf
+     *  getInstance
+     *  newInstance
+     *  getType
+     *  ...
+     */
+    public static Settings getInstance() {
 
         return SETTINGS;
     }
