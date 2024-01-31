@@ -4,6 +4,7 @@ public class Order {
     private boolean prime;
     private boolean urgent;
     private Product product;
+    private OrderStatus orderStatus;
 
     /**
      * 만들어주는 객체의 특징을 Factory Method의 이름으로 더 잘 나타내 줄 수 있다.
@@ -20,6 +21,14 @@ public class Order {
         order.urgent = true;
         order.product = product;
         return order;
+    }
+
+    public static void main(String[] args) {
+
+        Order order = new Order();
+        if (order.orderStatus == OrderStatus.DELIVERED) {
+            System.out.println("delivered");
+        }
     }
 
     /**
