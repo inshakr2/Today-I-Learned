@@ -2,24 +2,7 @@ package redbook;
 
 public class Simulation1 {
 
-    public int[] thePouring(int[] capacities, int[] bottles, int[] fromId, int[] toId) {
-
-//        for (int i = 0; i < fromId.length; i++) {
-//
-//            // bottle[from] -> bottle[to]
-//            //  -> capacity 확인
-//
-//            int pour = bottles[fromId[i]] - (capacities[toId[i]] - bottles[toId[i]]);
-//
-//            if (pour > 0) {
-//                bottles[fromId[i]] = bottles[fromId[i]] - Math.abs(pour);
-//                bottles[toId[i]] = capacities[toId[i]];
-//            } else {
-//                bottles[toId[i]] = bottles[fromId[i]] + bottles[toId[i]];
-//                bottles[fromId[i]] = 0;
-//            }
-//
-//        }
+    public int[] thePouring (int[] capacities, int[] bottles, int[] fromId, int[] toId) {
 
         for (int i = 0; i < fromId.length; i++) {
 
@@ -36,6 +19,20 @@ public class Simulation1 {
                 bottles[fromId[i]] = 0; // 다 따름
             }
 
+        }
+
+        return bottles;
+    }
+
+    public int[] thePouring_sec (int[] capacities, int[] bottles, int[] fromId, int[] toId) {
+
+        for (int i = 0; i < fromId.length; i++) {
+
+            // 옮길 양과 옮길 주스 병의 남아있는 공간 중 더 작은 값이 결국은 옮길 양임
+            int pour = Math.min(bottles[fromId[i]], (capacities[toId[i]] - bottles[toId[i]]));
+
+            bottles[fromId[i]] -= pour;
+            bottles[toId[i]] += pour;
         }
 
         return bottles;
