@@ -43,7 +43,6 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withUsername("user").password("{noop}1234").roles("USER").build();
-        return new InMemoryUserDetailsManager(user);
+        return new CustomUserDetailsService();
     }
 }
