@@ -25,12 +25,24 @@ public class SecurityConfig {
 
 
         http
-                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login").permitAll()
+                        .anyRequest().authenticated())
 //                .httpBasic(Customizer.withDefaults());
 //                .httpBasic(basic -> basic.authenticationEntryPoint(new CustmAuthenticationEntryPoint()));
-//                .formLogin(Customizer.withDefaults())
-                .authenticationManager(authenticationManager)
-                .addFilterBefore(customAuthenticationFilter(http, authenticationManager), UsernamePasswordAuthenticationFilter.class);
+                .formLogin(Customizer.withDefaults());
+
+//                .authenticationManager(authenticationManager)
+//                .addFilterBefore(customAuthenticationFilter(http, authenticationManager), UsernamePasswordAuthenticationFilter.class);
+
+        http.sessionManagement(
+                session -> session
+                        .invalidSessionUrl("/invalidSessionUrl")
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(true)
+                        .expiredUrl("/expired")
+        );
+
 
         return http.build();
     }
