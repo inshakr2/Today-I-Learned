@@ -35,6 +35,19 @@ public class SecurityConfig {
         );
 
 
+
+        http.exceptionHandling(exception -> exception
+                .authenticationEntryPoint((request, response, authException) -> {
+                    // AuthenticationEntryPoint 커스텀 설정
+                    System.out.println(authException.getMessage());
+                })
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    // AccessDeniedHandler 커스텀 설정
+                    System.out.println(accessDeniedException.getMessage());
+                })
+        );
+
+
         return http.build();
     }
 
