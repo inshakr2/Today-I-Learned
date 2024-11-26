@@ -35,6 +35,9 @@ public class SecurityConfig {
         );
 
 
+        http.csrf(Customizer.withDefaults()); // csrf 의 기능을 활성화 한다. 별도 설정하지 않아도 활성화 상태로 초기화 된다
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/csrf"));
+
 
         http.exceptionHandling(exception -> exception
                 .authenticationEntryPoint((request, response, authException) -> {
