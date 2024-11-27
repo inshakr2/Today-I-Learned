@@ -11,6 +11,10 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
 
 @EnableWebSecurity
 @Configuration
@@ -38,6 +42,17 @@ public class SecurityConfig {
         http.csrf(Customizer.withDefaults()); // csrf 의 기능을 활성화 한다. 별도 설정하지 않아도 활성화 상태로 초기화 된다
         http.csrf(csrf -> csrf.ignoringRequestMatchers("/csrf"));
 
+        HttpSessionCsrfTokenRepository httpSessionCsrfTokenRepository = new HttpSessionCsrfTokenRepository();
+        http.csrf(csrf -> csrf.csrfTokenRepository(httpSessionCsrfTokenRepository));
+
+        CookieCsrfTokenRepository repository = new CookieCsrfTokenRepository();
+        http.csrf(csrf -> csrf.csrfTokenRepository(repository));
+        http.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
+
+        XorCsrfTokenRequestAttributeHandler csrfTokenHandler = new XorCsrfTokenRequestAttributeHandler();
+        csrfTokenHandler.setCsrfRequestAttributeName(null);
+        CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
+        http.csrf(csrf -> csrf.csrfTokenRequestHandler(csrfTokenHandler));
 
         http.exceptionHandling(exception -> exception
                 .authenticationEntryPoint((request, response, authException) -> {
