@@ -24,6 +24,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
+        SpaCsrfTokenRequestHandler csrfTokenRequestHandler = new SpaCsrfTokenRequestHandler();
 
 
         http
@@ -39,20 +40,8 @@ public class SecurityConfig {
         );
 
 
-        http.csrf(Customizer.withDefaults()); // csrf 의 기능을 활성화 한다. 별도 설정하지 않아도 활성화 상태로 초기화 된다
-        http.csrf(csrf -> csrf.ignoringRequestMatchers("/csrf"));
-
-        HttpSessionCsrfTokenRepository httpSessionCsrfTokenRepository = new HttpSessionCsrfTokenRepository();
-        http.csrf(csrf -> csrf.csrfTokenRepository(httpSessionCsrfTokenRepository));
-
-        CookieCsrfTokenRepository repository = new CookieCsrfTokenRepository();
-        http.csrf(csrf -> csrf.csrfTokenRepository(repository));
-        http.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
-
-        XorCsrfTokenRequestAttributeHandler csrfTokenHandler = new XorCsrfTokenRequestAttributeHandler();
-        csrfTokenHandler.setCsrfRequestAttributeName(null);
-        CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
-        http.csrf(csrf -> csrf.csrfTokenRequestHandler(csrfTokenHandler));
+        http.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .csrfTokenRequestHandler(csrfTokenRequestHandler));
 
         http.exceptionHandling(exception -> exception
                 .authenticationEntryPoint((request, response, authException) -> {
