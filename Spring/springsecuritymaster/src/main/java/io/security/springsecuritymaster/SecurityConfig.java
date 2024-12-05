@@ -40,6 +40,7 @@ public class SecurityConfig {
         );
 
 
+
         http.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .csrfTokenRequestHandler(csrfTokenRequestHandler));
 
