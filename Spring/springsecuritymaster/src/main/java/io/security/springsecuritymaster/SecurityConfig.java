@@ -1,5 +1,6 @@
 package io.security.springsecuritymaster;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,10 +12,16 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.expression.DefaultHttpSecurityExpressionHandler;
+import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
+
+import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasAuthority;
+import static org.springframework.security.authorization.AuthorityAuthorizationManager.hasRole;
+import static org.springframework.security.authorization.AuthorizationManagers.anyOf;
 
 @EnableWebSecurity
 @Configuration
@@ -30,6 +37,19 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll()
+
+                        .requestMatchers("/user/{name}")
+                        .access((new WebExpressionAuthorizationManager("#name == authentication.name")))
+
+                        .requestMatchers("/admin/db")
+                        .access(new WebExpressionAuthorizationManager("hasAuthority('ROLE_DB') or hasRole('ADMIN)"))
+
+                        .requestMatchers("/admin/db")
+                        .access(anyOf(hasAuthority("ROLE_DB"), hasRole("ADMIN")))
+
+                        // custom
+                        .requestMatchers(new CustomRequestMatcher("/api/**")).hasAuthority("USER")
+
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults());
 
@@ -55,6 +75,19 @@ public class SecurityConfig {
                 })
         );
 
+
+        return http.build();
+    }
+
+    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, ApplicationContext context) throws Exception {
+        DefaultHttpSecurityExpressionHandler expressionHandler = new DefaultHttpSecurityExpressionHandler();
+        expressionHandler.setApplicationContext(context);
+
+        WebExpressionAuthorizationManager expressionManager = new WebExpressionAuthorizationManager("@");
+        expressionManager.setExpressionHandler(expressionHandler);
+
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/resource/**").access(expressionManager));
 
         return http.build();
     }
