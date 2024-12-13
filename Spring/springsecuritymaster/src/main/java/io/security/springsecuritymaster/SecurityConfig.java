@@ -3,6 +3,7 @@ package io.security.springsecuritymaster;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -106,5 +107,26 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain1(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().authenticated())
+                .formLogin(Customizer.withDefaults());
+
+        return http.build();
+    }
+
+    @Bean
+    @Order(1)
+    public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception {
+        http
+                .securityMatchers(matcher -> matcher.requestMatchers("/api/**","/oauth/**"))
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll());
+
+        return http.build();
     }
 }
