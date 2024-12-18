@@ -46,6 +46,7 @@ public class WebSecurity {
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(WHITE_LIST).permitAll()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
+                .requestMatchers("/actuator/**").permitAll()
                 .requestMatchers("/**").access(
                         new WebExpressionAuthorizationManager(
                                 "hasIpAddress('localhost') or hasIpAddress('127.0.0.1')"))
