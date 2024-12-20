@@ -11,7 +11,8 @@ eureka:
 spring:
   application:
     name: apigateway-service
-
+  profiles:
+    active: dev
   config:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
   cloud:
