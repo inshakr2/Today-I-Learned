@@ -8,4 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: /Users/chany/Study/Git/Today-I-Learned/MSA/config-repo
+#          uri: /Users/chany/Study/Git/Today-I-Learned/MSA/config-repo
+          uri: https://github.com/inshakr2/spring-config-repo
