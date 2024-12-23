@@ -45,6 +45,7 @@ dependencies {
 
 	// config
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
 //	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
 
 	implementation 'org.modelmapper:modelmapper:2.3.8'

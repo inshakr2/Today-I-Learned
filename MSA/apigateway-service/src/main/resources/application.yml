@@ -11,6 +11,13 @@ eureka:
 spring:
   application:
     name: apigateway-service
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
   profiles:
     active: dev
   config:
@@ -20,12 +27,12 @@ spring:
       name: ecommerce # yml 파일명 앞부분
 
     gateway:
-      default-filters:
-        - name: GlobalFilter
-          args:
-            baseMessage: Spring Cloud Gateway Global Filter
-            preLogger: true
-            postLogger: true
+#      default-filters:
+#        - name: GlobalFilter
+#          args:
+#            baseMessage: Spring Cloud Gateway Global Filter
+#            preLogger: true
+#            postLogger: true
       routes:
 #        - id: user-service
 #          uri: lb://USER-SERVICE
@@ -98,7 +105,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans, info, httpexchanges
+        include: refresh, health, beans, info, httpexchanges, busrefresh
 
 #token:
 #  secret: user_token

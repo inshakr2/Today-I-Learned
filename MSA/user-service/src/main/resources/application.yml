@@ -4,11 +4,18 @@ server:
 spring:
   profiles:
     active: dev
+
   cloud:
     config:
       name: ecommerce # yml 파일명 앞부분
   config:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
   application:
     name: user-service
@@ -43,7 +50,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans, info
+        include: refresh, health, beans, info, busrefresh
 
 greeting:
   message: Welcome to the Simple E-Commerce.
