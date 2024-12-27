@@ -7,7 +7,7 @@ spring:
 
   cloud:
     config:
-      name: ecommerce # yml 파일명 앞부분
+      name: user-service # yml 파일명 앞부분
   config:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
 
@@ -19,10 +19,10 @@ spring:
 
   application:
     name: user-service
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb
-    username: sa
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:testdb
+#    username: sa
   jpa:
     hibernate:
       ddl-auto: update
