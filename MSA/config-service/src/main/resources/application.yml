@@ -28,4 +28,8 @@ management:
         include: health, busrefresh
 
 encrypt:
-  key: abcdefg1234567
+#  key: abcdefg1234567
+  key-store:
+    location: file://${user.home}/Study/Git/keystore/apiEncryptionKey.jks
+    password: 12qwaszx
+    alias: apiEncryptionKey
