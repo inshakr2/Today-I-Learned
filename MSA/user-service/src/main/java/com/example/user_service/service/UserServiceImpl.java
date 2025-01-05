@@ -5,7 +5,9 @@ import com.example.user_service.dto.UserDto;
 import com.example.user_service.jpa.UserEntity;
 import com.example.user_service.jpa.UserRepository;
 import com.example.user_service.vo.ResponseOrder;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.core.ParameterizedTypeReference;
@@ -25,6 +27,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -71,7 +74,7 @@ public class UserServiceImpl implements UserService {
 
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-//        List<ResponseOrder> orders = new ArrayList<>();
+        List<ResponseOrder> orders = null;
         /* Using as rest template */
 //        String orderUrl = String.format(env.getProperty("order-service.url"), userId);
 //        ResponseEntity<List<ResponseOrder>> orderListResponse = restTemplate.exchange(orderUrl, HttpMethod.GET, null,
@@ -80,7 +83,12 @@ public class UserServiceImpl implements UserService {
 //        List<ResponseOrder> orders = orderListResponse.getBody();
 
         /* Using as Feign Client */
-        List<ResponseOrder> orders = orderServiceClient.getOrders(userId);
+
+        try {
+            orders = orderServiceClient.getOrders(userId);
+        } catch (FeignException e) {
+            log.error(e.getMessage());
+        }
         userDto.setOrders(orders);
 
         return userDto;
