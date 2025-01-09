@@ -27,6 +27,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    defer-datasource-initialization: true
   h2:
     console:
       enabled: true
@@ -54,6 +55,11 @@ management:
 
 greeting:
   message: Welcome to the Simple E-Commerce.
+
+logging:
+  level:
+    com.example.user_service.client: DEBUG
+
 
 #token:
 #  expiration_time: 86400000
