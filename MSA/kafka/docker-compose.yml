@@ -126,17 +126,20 @@ services:
     depends_on:
       - zookeeper01
   
-
   kafka-connect-jdbc:
-    image: confluentinc/cp-kafka-connect-base:7.8.0
+    build:
+      context: ./
+      dockerfile: Dockerfile-kafka-connect
     hostname: kafka-connect-jdbc
     container_name: kafka-connect-jdbc
     ports: 
       - "8083:8083"
     restart: unless-stopped
     # networks:
-    #   - kafka_network 
+    #   - kafka_network
+    #   - public_network
     volumes:
+      # - /Users/chany/Study/kafka-jar/7.8.0:/etc/kafka-connect/jars
       - /Users/chany/Study/kafka-jar/7.8.0:/etc/kafka-connect/jars
     environment:
       CONNECT_BOOTSTRAP_SERVERS: kafka01:19092,kafka02:19093,kafka03:19094
@@ -155,11 +158,46 @@ services:
       CONNECT_REST_ADVERTISED_HOST_NAME: "localhost"
       CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
       CONNECT_PLUGIN_PATH: "/usr/share/java, /etc/kafka-connect/jars"
-     depends_on:
+    depends_on:
       - zookeeper01
       - kafka01
       - kafka02
       - kafka03
+  # kafka-connect-jdbc:
+  #   image: confluentinc/cp-kafka-connect-base:7.8.0
+  #   hostname: kafka-connect-jdbc
+  #   container_name: kafka-connect-jdbc
+  #   ports: 
+  #     - "8083:8083"
+  #   restart: unless-stopped
+  #   networks:
+  #     - kafka_network 
+  #   volumes:
+  #     - /Users/chany/Study/kafka-jar/7.8.0:/etc/kafka-connect/jars
+  #   environment:
+  #     CONNECT_BOOTSTRAP_SERVERS: kafka01:19092,kafka02:19093,kafka03:19094
+  #     CONNECT_REST_PORT: 8083
+  #     CONNECT_GROUP_ID: "connect"
+  #     CONNECT_CONFIG_STORAGE_TOPIC: "connect-config"
+  #     CONNECT_OFFSET_STORAGE_TOPIC: "connect-offsets"
+  #     CONNECT_STATUS_STORAGE_TOPIC: "connect-status"
+  #     CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+  #     CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+  #     CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+  #     CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+  #     CONNECT_REST_ADVERTISED_HOST_NAME: "localhost"
+  #     CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
+  #     CONNECT_PLUGIN_PATH: "/usr/share/java, /etc/kafka-connect/jars"
+  #   # command: ['confluent-hub install --no-prompt --component-dir /etc/kafka-connect/jars confluentinc/kafka-connect-jdbc:10.7.4',
+  #   #         'curl -L -o /usr/share/java/confluentinc-kafka-connect-jdbc/lib/mysql-connector-java-8.0.23.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar']
+  #   depends_on:
+  #     - zookeeper01
+  #     - kafka01
+  #     - kafka02
+  #     - kafka03
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
