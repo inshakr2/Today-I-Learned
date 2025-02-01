@@ -135,9 +135,9 @@ services:
     restart: unless-stopped
     networks:
       - kafka_network
-    volumes:
-      # - /Users/chany/Study/kafka-jar/7.8.0:/etc/kafka-connect/jars
-      - /Users/chany/Study/kafka-jar/7.8.0:/etc/kafka-connect/jars
+    # volumes:
+    #   # - /Users/chany/Study/kafka-jar/7.8.0:/etc/kafka-connect/jars
+    #   - /Users/chany/Study/kafka-jar/7.8.0:/etc/kafka-connect/jars
     environment:
       CONNECT_BOOTSTRAP_SERVERS: kafka01:19092,kafka02:19093,kafka03:19094
       CONNECT_REST_PORT: 8083
