@@ -1,0 +1,146 @@
+version: "3"
+
+networks:
+  kafka_network:
+
+volumes:
+  kafka01:
+    driver: local
+  kafka02:
+    driver: local
+  kafka03:
+    driver: local
+
+services:
+  zookeeper01:
+    image: confluentinc/cp-zookeeper:7.8.0
+    hostname: zookeeper01
+    container_name: zookeeper01
+    ports:
+      - "2181:2181"
+    restart: unless-stopped
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_SYNC_LIMIT: 2
+    networks:
+      - kafka_network 
+
+  kafka01:
+    image: confluentinc/cp-kafka:7.8.0
+    hostname: kafka01
+    container_name: kafka01
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    restart: unless-stopped
+    environment:
+      KAFKA_BROKER_ID: 1    
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka01:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper01:2181
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+    networks:
+      - kafka_network    
+    volumes:
+      - kafka01:/confluentinc/kafka
+    depends_on:
+      - zookeeper01
+
+  kafka02:
+    image: confluentinc/cp-kafka:7.8.0
+    hostname: kafka02
+    container_name: kafka02
+    ports:
+      - "9093:9093"
+      - "29093:29093"
+    restart: unless-stopped
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka02:19093,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9093,DOCKER://host.docker.internal:29093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper01:2181
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+    networks:
+      - kafka_network
+    volumes:
+      - kafka02:/confluentinc/kafka    
+    depends_on:
+      - zookeeper01
+
+  kafka03:
+    image: confluentinc/cp-kafka:7.8.0
+    hostname: kafka03
+    container_name: kafka03
+    ports:
+      - "9094:9094"
+      - "29094:29094"
+    restart: unless-stopped
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka03:19094,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9094,DOCKER://host.docker.internal:29094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper01:2181
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+    networks:
+      - kafka_network    
+    volumes:
+      - kafka03:/confluentinc/kafka    
+    depends_on:
+      - zookeeper01
+  
+  kafka-connect-jdbc:
+    build:
+      context: ./
+      dockerfile: Dockerfile-kafka-connect
+    hostname: kafka-connect-jdbc
+    container_name: kafka-connect-jdbc
+    ports: 
+      - "8083:8083"
+    restart: unless-stopped
+    networks:
+      - kafka_network
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: kafka01:19092,kafka02:19093,kafka03:19094
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: "connect"
+      CONNECT_CONFIG_STORAGE_TOPIC: "connect-config"
+      CONNECT_OFFSET_STORAGE_TOPIC: "connect-offsets"
+      CONNECT_STATUS_STORAGE_TOPIC: "connect-status"
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "localhost"
+      CONNECT_LOG4J_ROOT_LOGLEVEL: DEBUG
+      CONNECT_PLUGIN_PATH: "/usr/share/java"
+    depends_on:
+      - zookeeper01
+      - kafka01
+      - kafka02
+      - kafka03
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    restart: always
+    container_name: kafka-ui
+    ports:
+      - '8085:8080'
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local-kafka
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka01:19092,kafka02:19092,kafka03:19092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper01:2181
+    depends_on:
+      - kafka01
+      - kafka02
+      - kafka03
+    networks:
+      - kafka_network
