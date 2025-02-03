@@ -35,7 +35,6 @@ spring:
         web-allow-others: true
       path: /h2-console
 
-
 eureka:
   client:
     register-with-eureka: true
@@ -52,6 +51,15 @@ management:
     web:
       exposure:
         include: refresh, health, beans, info, busrefresh
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: b3
+      produce: b3_multi
+    zipkin:
+      tracing:
+        endpoint: "http://localhost:9411/api/v2/spans"
 
 greeting:
   message: Welcome to the Simple E-Commerce.
