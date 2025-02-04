@@ -33,9 +33,11 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.kafka:spring-kafka'
 
-	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+	// monitoring
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
 
 	implementation 'org.modelmapper:modelmapper:2.3.8'
 	runtimeOnly 'com.h2database:h2:2.2.224'

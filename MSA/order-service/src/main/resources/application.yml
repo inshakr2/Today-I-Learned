@@ -42,6 +42,10 @@ logging:
     com.example.order_service: DEBUG
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, info, metrics, prometheus
   tracing:
     sampling:
       probability: 1.0
