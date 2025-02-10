@@ -1,0 +1,39 @@
+global:
+  scrape_interval: 15s
+#   scrape_timeout: 15s
+  evaluation_interval: 15s
+
+#   external_labels:
+#     monitor: 'codelab-monitor'
+#     query_log_file: query_log_file.log
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus:9090']
+        labels:
+          service: 'monitor'
+
+  - job_name: 'user-service'
+    scrape_interval: 15s
+    # scrape_timeout: 10s
+    metrics_path: '/user-service/actuator/prometheus'
+    static_configs:
+      # - targets: ['host.docker.internal:8000']
+      - targets: ['apigateway-service:8000']
+
+  - job_name: 'order-service'
+    scrape_interval: 15s
+    # scrape_timeout: 10s
+    metrics_path: '/order-service/actuator/prometheus'
+    static_configs:
+      # - targets: ['host.docker.internal:8000']
+      - targets: ['apigateway-service:8000']
+
+  - job_name: 'apigateway-service'
+    scrape_interval: 15s
+    # scrape_timeout: 10s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      # - targets: ['host.docker.internal:8000']
+      - targets: ['apigateway-service:8000']

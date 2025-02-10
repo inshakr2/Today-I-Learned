@@ -17,7 +17,7 @@ spring:
       ddl-auto: update
     show-sql: true
 #    database: h2
-    defer-datasource- initialization: true
+    defer-datasource-initialization: true
   h2:
     console:
       enabled: true

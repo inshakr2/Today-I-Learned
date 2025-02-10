@@ -5,6 +5,12 @@ spring:
   application:
     name: discoveryservice
 
+  config:
+    import: optional:configserver:http://localhost:8888 # 구성정보 설정
+  cloud:
+    config:
+      name: ecommerce # yml 파일명 앞부분
+
 eureka:
   client:
     register-with-eureka: false
