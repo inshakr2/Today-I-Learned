@@ -1,5 +1,3 @@
-package redbook;
-
 public class Simulation1 {
 
     public int[] thePouring (int[] capacities, int[] bottles, int[] fromId, int[] toId) {
