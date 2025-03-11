@@ -55,7 +55,6 @@ public class ArticleLikeService {
                 });
     }
 
-
     /**
      *  select ... for update 후 update
      */
@@ -71,6 +70,7 @@ public class ArticleLikeService {
         ArticleLikeCount articleLikeCount = articleLikeCountRepository.findLockedByArticleId(articleId)
                 .orElseGet(() -> ArticleLikeCount.init(articleId, 0L));
         articleLikeCount.increase();
+        articleLikeCountRepository.save(articleLikeCount);
     }
 
     @Transactional
@@ -94,11 +94,26 @@ public class ArticleLikeService {
                         articleId,
                         userId)
         );
+
+        ArticleLikeCount articleLikeCount = articleLikeCountRepository.findById(articleId)
+                .orElseGet(() -> ArticleLikeCount.init(articleId, 0L));
+        articleLikeCount.increase();
+        articleLikeCountRepository.save(articleLikeCount);
     }
 
     @Transactional
     public void unlikeOptimisticLock(Long articleId, Long userId) {
         articleLikeRepository.findByArticleIdAndUserId(articleId, userId)
-                .ifPresent(articleLikeRepository::delete);
+                .ifPresent(entity -> {
+                    articleLikeRepository.delete(entity);
+                    ArticleLikeCount articleLikeCount = articleLikeCountRepository.findById(articleId).orElseThrow();
+                    articleLikeCount.decrease();
+                });
+    }
+
+    public Long count(Long articleId) {
+        return articleLikeCountRepository.findById(articleId)
+                .map(ArticleLikeCount::getLikeCount)
+                .orElse(0L);
     }
 }
