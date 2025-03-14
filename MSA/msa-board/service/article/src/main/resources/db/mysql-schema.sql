@@ -7,3 +7,10 @@ create table article (
     created_at datetime not null,
     modified_at datetime not null
 );
+
+create index idx_board_id_article_id on article(board_id asc, article_id desc);
+
+create table board_article_count (
+    board_id bigint not null primary key,
+    article_count bigint not null
+);
