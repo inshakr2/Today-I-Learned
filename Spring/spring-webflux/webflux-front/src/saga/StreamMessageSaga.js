@@ -7,7 +7,7 @@ import {
 import {eventChannel} from "@redux-saga/core";
 
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:8085';
 
 const END = {
     end: true

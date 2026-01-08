@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:8085';
 
 // 스트림 응답을 처리하는 함수
 function parseStreamChatMessages(response, onSubscribe, onComplete, onError) {
