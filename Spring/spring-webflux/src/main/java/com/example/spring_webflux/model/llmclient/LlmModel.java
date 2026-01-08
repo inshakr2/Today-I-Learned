@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum LlmModel {
     GPT_4O("gpt-4o", LlmType.GPT),
-    GEMINI_2_0_FLASH("gemini-2.5-flash", LlmType.GEMINI)
+    GEMINI_2_5_FLASH("gemini-2.5-flash", LlmType.GEMINI)
     ;
 
     private final String code;

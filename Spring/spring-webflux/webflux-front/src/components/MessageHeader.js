@@ -15,7 +15,7 @@ const MessageHeader = () => {
                          src="/layout/whitelogo.png"
                          alt="" className="w-5 aspect-square"/>
                     <div className="text-2xl font-semibold  text-white ml-1 pt-1">
-                        Your-App
+                        Chany-LLM-Stream
                     </div>
                 </div>
             </div>
