@@ -2,6 +2,7 @@ package com.example.view.controller;
 
 import com.example.view.service.ArticleViewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,5 +18,10 @@ public class ArticleViewController {
             @PathVariable("userId") Long userId
     ) {
         return articleViewService.increase(articleId, userId);
+    }
+
+    @GetMapping("/v1/article-views/articles/{articleId}/count")
+    public Long count(@PathVariable("articleId") Long articleId) {
+        return articleViewService.count(articleId);
     }
 }
