@@ -49,7 +49,7 @@ public class MessageRelayConfig {
 
     @Bean // 이벤트 전송이 아직 안된 것들에 대해 주기적으로 sending 하기 위한 스레드
     public Executor messageRelayPublishPendingEventExecutor() {
-        return Executors.newSingleThreadExecutor();
+        return Executors.newSingleThreadScheduledExecutor();
     }
 
 

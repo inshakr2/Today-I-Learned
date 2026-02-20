@@ -1,5 +1,8 @@
 package com.example.view.service;
 
+import com.example.common.event.EventType;
+import com.example.common.event.payload.ArticleViewedEventPayload;
+import com.example.common.outboxmessagerelay.OutboxEventPublisher;
 import com.example.view.entity.ArticleViewCount;
 import com.example.view.repository.ArticleViewCountBackUpRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ArticleViewCountBackupProcessor {
     private final ArticleViewCountBackUpRepository articleViewCountBackUpRepository;
+    private final OutboxEventPublisher outboxEventPublisher;
 
     @Transactional
     public void backup(Long articleId, Long viewCount) {
@@ -22,5 +26,13 @@ public class ArticleViewCountBackupProcessor {
                             ));
         }
 
+        outboxEventPublisher.publish(
+                EventType.ARTICLE_VIEWED,
+                ArticleViewedEventPayload.builder()
+                        .articleId(articleId)
+                        .articleViewCount(viewCount)
+                        .build(),
+                articleId
+        );
     }
 }
