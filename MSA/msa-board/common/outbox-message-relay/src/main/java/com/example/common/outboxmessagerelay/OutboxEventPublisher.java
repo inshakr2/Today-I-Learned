@@ -24,6 +24,6 @@ public class OutboxEventPublisher {
                 ).toJson(),
                 shardKey % MessageRelayConstants.SHARD_COUNT
         );
-        eventPublisher.publishEvent(outbox);
+        eventPublisher.publishEvent(OutboxEvent.of(outbox));
     }
 }
