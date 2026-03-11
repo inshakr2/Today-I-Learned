@@ -1,5 +1,6 @@
 package com.example.articleread.client;
 
+import com.example.articleread.cache.OptimizedCacheable;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,9 @@ public class ViewClient {
     // Redis 데이터 조회
     //  ifNotExists) count 메서드 호출 > 레디스에 데이터 캐싱 > 데이터 반환
     //  ifExists) 데이터 바로 반환
-    @Cacheable(key = "#articleId", value = "articleViewCount")
+    // key = "articleViewCount::{articleId}" (articleViewCount::147361745322594363)
+//    @Cacheable(key = "#articleId", value = "articleViewCount")
+    @OptimizedCacheable(type = "articleViewCount", ttlSeconds = 1)
     public long count(Long articleId) {
         log.info("[ViewClient.count] articleId={}", articleId);
         try {

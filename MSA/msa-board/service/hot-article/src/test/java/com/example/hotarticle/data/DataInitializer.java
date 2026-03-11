@@ -48,7 +48,7 @@ public class DataInitializer {
     private void like(Long articleId, long likeCount) {
         while (likeCount-- > 0) {
             likeServiceClient.post()
-                    .uri("/v1/article-likes/articles/{articleId}/users/{userId}/pessimistic-lock-1", articleId, likeCount)
+                    .uri("/v1/article-like/articles/{articleId}/users/{userId}/pessimistic-lock-1", articleId, likeCount)
                     .retrieve();
         }
     }
